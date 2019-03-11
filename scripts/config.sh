@@ -11,7 +11,7 @@ kafka_url="http://apache.miloslavbrada.cz/kafka/2.1.0/kafka_2.11-2.1.0.tgz"
 kafka_dir="$root_dir/kafka"
 
 # Scripts are using RVM
-rvm_ruby_version_tp_inv="2.4"
+rvm_ruby_version_tp_inv="2.5"
 rvm_gemset_name_tp_inv="tp-inv"
 
 # Array of repositories maintained by other scripts
@@ -20,9 +20,9 @@ repositories=("topological_inventory-api"
               "topological_inventory-ingress_api"
               "topological_inventory-ingress_api-client-ruby"
 	      "topological_inventory-persister"		   
-              "topological_inventory-collector-amazon"
-              "topological_inventory-collector-mock"
-              "topological_inventory-collector-openshift"
+              "topological_inventory-amazon"
+              "topological_inventory-mock_source"
+              "topological_inventory-openshift"
               "inventory_refresh"
 	     )
 
