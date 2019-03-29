@@ -1,6 +1,6 @@
 # Topological Inventory (tp-inv) guides
 
-# Installation 
+These guides describes how to install and run Topological Inventory 
 
 ## Prerequisities
 
@@ -38,7 +38,7 @@ Config file contains all information for installation and running services.
 - Fill RVM ruby version you want to use (if using rvm) (_RVM_RUBY_VERSION_TP_INV_)
 - Fill RVM gemset name you want to use (if using rvm) (_RVM_GEMSET_NAME_TP_INV_)
 
-*Installation*
+## Installation
 
 - Switch to `scripts` directory 
 - Run [install.sh](scripts/install.sh)
@@ -50,7 +50,7 @@ Config file contains all information for installation and running services.
 - Run [init-db.sh](scripts/init-db.sh)
   - If your db exists, you can run only [reset-db.sh](scripts/reset-db.sh) (existing data will be lost!)
 
-# Starting services
+## Starting services
 
 Starting Persister and API services is pretty easy:
 
@@ -66,7 +66,7 @@ You can find list of service names in [services](scripts/services) dir. `service
 ## Restarting services
 - Run `restart.sh <service_name>` 
 
-# Stop all services:
+## Stop all services:
 - Run `stop.sh`
 
 ## Collectors
@@ -83,7 +83,7 @@ Collectors are responsible for collecting data from providers. Actually availabl
 *TODO*
 
 
-# Reset your database
+## Reset your database
 
 It resets your database and seeds basic data including Sources 
 
