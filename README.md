@@ -6,86 +6,86 @@
 
 **RVM**
 
-If you're not using rvm, rewrite scripts according your needs
+Ruby version manager
+https://rvm.io/rvm/install  
+If you're not using rvm, just remove content of [init-common.sh](scripts/init-common.sh)
+If you're using rvm, create gemset for this project.
+
+**TMUX**
+
+Terminal multiplexer is required for automatized starting/restarting/stopping services in one session.
+https://linuxize.com/post/getting-started-with-tmux/
+
+**GitHub Token**
+
+GitHub token is needed for API requests by install script. It detects which repositories you have forked and which not
+https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line
+
+**Kafka**
+
+Kafka is messaging server used for sending data across services.
+Just get the current link to latest stable archive there: https://kafka.apache.org/quickstart
+
 
 **Config file**
 
-- Create your Topological Inventory root directory 
-- Copy content of scripts directory into it 
-- Edit [config.sh](scripts/config.sh) and set variables including your root directory 
+Config file contains all information for installation and running services.
+- Copy [config.dev.sh](scripts/config.dev.sh) into `scripts/config.sh` 
+- Fill your github name (_MY_GITHUB_NAME_)
+- Fill your github token (_MY_GITHUB_TOKEN_)
+- Fill your root directory for repositories (_root_dir_)
+- Fill URL to kafka archive (see chapter above) (_KAFKA_INSTALL_URL_)
+- Fill RVM ruby version you want to use (if using rvm) (_RVM_RUBY_VERSION_TP_INV_)
+- Fill RVM gemset name you want to use (if using rvm) (_RVM_GEMSET_NAME_TP_INV_)
 
-**Download and setup topological-inventory**
+*Installation*
 
-Setup expects you have fork of all repositories listed in [config.sh](scripts/config.sh) file.
+- Switch to `scripts` directory 
+- Run [install.sh](scripts/install.sh)
+- Check your database.yml files if you want custom db name in repositories (all must point to the same db):
+  - topological_inventory-api
+  - topological_inventory-core
+  - topological_inventory-persister
+  - sources-api
+- Run [init-db.sh](scripts/init-db.sh)
+  - If your db exists, you can run only [reset-db.sh](scripts/reset-db.sh) (existing data will be lost!)
 
-If yes, run: [setup-tp-inv.sh](scripts/setup-tp-inv.sh)
+# Starting services
 
-If you don't want to fork, you can clone ManageIQ repositories directly, see [clone-tp-inv.sh](scripts/clone-tp-inv.sh) for details. 
+Starting Persister and API services is pretty easy:
 
-## Persister, kafka and Ingress API server
+- Switch to `scripts` directory (symlink was added to your repository `root_dir` by installation script)
+- Run `start.sh`
 
-Persister, Kafka and Ingress API are backend core of tp-inv.
+Starting collectors and operation workers:
+- Fill service env variables (like credentials) in `scripts/config.sh` 
+- Run `start.sh <service_name>`
 
-### How to run them:
+You can find list of service names in [services](scripts/services) dir. `service_name` param is equal to script name without ".sh" suffix.
 
-```
-# Open 1st terminal:
-kafka.sh start
-# Now wait for a while for initialization
+## Restarting services
+- Run `restart.sh <service_name>` 
 
-# Open 2nd terminal
-cd <topological inventory root>/topological_inventory-ingress_api
-bundle exec rackup
-
-# Open 3rd terminal
-cd <topological inventory root>/topological_inventory-persister
-bin/topological_inventory-persister
-
-```
-
-And your local tp-inv core parts should be ready!
-
-### How to stop them:
-```
-# On 2nd and 3rd terminal:
-terminate process (CTRL+C on Fedora)
-
-# On 1st terminal
-kafka.sh stop
-```
+# Stop all services:
+- Run `stop.sh`
 
 ## Collectors
 
 Collectors are responsible for collecting data from providers. Actually available:
-- [Openshift collector](https://github.com/ManageIQ/topological_inventory-collector-openshift)
-- [Amazon collector](https://github.com/ManageIQ/topological_inventory-collector-amazon)
-- [Mock collector](https://github.com/ManageIQ/topological_inventory-collector-mock)
+- [Openshift collector](https://github.com/ManageIQ/topological_inventory-openshift)
+- [Amazon collector](https://github.com/ManageIQ/topological_inventory-amazon)
+- [Ansible Tower collector](https://github.com/ManageIQ/topological_inventory-ansible_tower)
+- [Mock collector](https://github.com/ManageIQ/topological_inventory-mock_source)
 
-### How to run collector
-
-You can find instructions in Readme of each collector.  
-Source guids needed to run them are initialized by [reset-db-tp-inv.sh](scripts/reset-db-tp-inv.sh) 
 
 ## UI
 
 *TODO*
 
-# Daily maintenance
 
-All daily maintenance scripts are helpers for mass operations over repositories.
-They uses [config.sh](scripts/config.sh) to get list of them. 
+# Reset your database
 
-## Reset your database
 It resets your database and seeds basic data including Sources 
 
-[reset-db-tp-inv.sh](scripts/reset-db-tp-inv.sh)
+[reset-db.sh](scripts/reset-db.sh)
 
-## Mass bundle
-
-[bundle-tp-inv.sh](scripts/bundle-tp-inv.sh) [install|update]
-
-## Mass checkout master & pull
-
-Expects you have forks as origin and ManageIQ repos as upstream
-
-[pull-tp-inv.sh](scripts/pull-tp-inv.sh)
