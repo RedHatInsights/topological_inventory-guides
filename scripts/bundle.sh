@@ -5,10 +5,7 @@
 #
 # NOTE: Edit your variables below!
 source config.sh
-source "$HOME/.rvm/scripts/rvm"
-
-rvm use $rvm_ruby_version_tp_inv
-rvm gemset use $rvm_gemset_name_tp_inv
+source init-common.sh
 
 cd $root_dir
 
