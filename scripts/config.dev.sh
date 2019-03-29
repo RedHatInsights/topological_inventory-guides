@@ -6,7 +6,7 @@ export MY_GITHUB_NAME="" # https://github.com/<MY_GITHUB_NAME>/<repository name>
 export MY_GITHUB_TOKEN=""
 
 # Root directory for cloned repositories
-# created by install script setup-tp-inv.sh
+# created by install script install.sh
 root_dir="/home/mslemr/Projects/topological-inventory"
 
 # Kafka queue

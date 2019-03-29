@@ -1,7 +1,7 @@
 #!/bin/bash --login
 #
 # Script for mass bundle topology inventory plugins
-# Usage: bundle-tp-inv.sh [install|update]
+# Usage: bundle.sh [install|update]
 #
 # NOTE: Edit your variables below!
 source config.sh
@@ -26,6 +26,6 @@ if [[ "$operation" == "install" || "$operation" == "update" ]]; then
 	done
 else
 	# Print help
-	echo "Usage: bundle-tp-inv.sh [install|update]"
+	echo "Usage: bundle.sh [install|update]"
 fi
 

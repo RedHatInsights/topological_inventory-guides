@@ -1,7 +1,5 @@
 #!/bin/bash --login
-# Usage ./start-tp-inv.sh [--with_kafka]
+# Usage ./stop.sh
 
 tmux kill-session -t TpInv
-
-# ./kafka.sh stop
 
