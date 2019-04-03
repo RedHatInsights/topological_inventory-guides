@@ -5,7 +5,7 @@ source config.sh
 
 service=$1	  
 
-if [ -z $service]; then
+if [ -z $service ]; then
 	echo "Usage: ./restart.sh <service name>"
 else
 	echo "Restarting $service..."

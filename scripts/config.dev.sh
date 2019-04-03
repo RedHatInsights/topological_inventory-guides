@@ -32,6 +32,8 @@ export INGRESS_API="http://localhost:9292"
 export TOPOLOGICAL_API_DIR="$root_dir/topological_inventory-api"
 export TOPOLOGICAL_INVENTORY_API_SERVICE_HOST="http://localhost" # used by openshift operations
 export TOPOLOGICAL_INVENTORY_API_SERVICE_PORT=3000
+# Uncomment if you want to disable tenancy
+#export BYPASS_TENANCY=1
 
 # Mock Source
 export MOCK_SOURCE_DIR="$root_dir/topological_inventory-mock_source"
@@ -60,6 +62,11 @@ export ANSIBLE_TOWER_SCHEME="https"
 export ANSIBLE_TOWER_HOST=""
 export ANSIBLE_TOWER_USER=""
 export ANSIBLE_TOWER_PASSWORD=""
+
+# UI
+export INSIGHTS_PROXY_DIR="$root_dir/insights-proxy"
+export INSIGHTS_CHROME_DIR="$root_dir/insights-chrome"
+export TOPOLOGICAL_INVENTORY_UI_DIR="$root_dir/topological_inventory-ui"
 
 # Array of repositories maintained by other scripts
 repositories=("topological_inventory-api"

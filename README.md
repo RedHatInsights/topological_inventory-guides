@@ -4,7 +4,7 @@ These guides describes how to install and run Topological Inventory
 
 ## Prerequisities
 
-**RVM**
+**RVM (optional)**
 
 Ruby version manager
 https://rvm.io/rvm/install  
@@ -26,6 +26,15 @@ https://help.github.com/en/articles/creating-a-personal-access-token-for-the-com
 Kafka is messaging server used for sending data across services.
 Just get the current link to latest stable archive there: https://kafka.apache.org/quickstart
 
+**Docker**
+
+Docker is needed for running UI service.
+Installations steps here: https://docs.docker.com/install/linux/docker-ce/fedora/
+
+**NPM**
+
+NPM is needed for running UI service (and insights proxy)
+https://www.npmjs.com/get-npm
 
 **Config file**
 

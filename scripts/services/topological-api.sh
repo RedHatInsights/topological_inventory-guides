@@ -4,5 +4,5 @@ source config.sh
 source init-common.sh
 
 cd $TOPOLOGICAL_API_DIR
-rails s
+env PORT=$TOPOLOGICAL_INVENTORY_API_SERVICE_PORT rails s
 

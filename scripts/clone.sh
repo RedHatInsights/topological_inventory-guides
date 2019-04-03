@@ -18,6 +18,12 @@ cd $root_dir
 
 for name in ${repositories[@]} 
 do
+    if [[ $name == "insights-proxy" || $name == "insights-chrome" ]]; then
+        upstream_org="RedHatInsights"
+    else
+        upstream_org="ManageIQ"
+    fi
+
 	echo "----------------------------------------------------------------------"
 	#
 	# 1) Check if repo already cloned
@@ -34,7 +40,7 @@ do
 		if [ "$forked" -gt "0" ]; then
 			echo "[FOUND] Fork git@github.com:$MY_GITHUB_NAME/$name"
 		else
-			echo "[NOT FOUND] Fork git@github.com:$MY_GITHUB_NAME/$name not found. Using ManageIQ repo as origin."
+			echo "[NOT FOUND] Fork git@github.com:$MY_GITHUB_NAME/$name not found. Using $upstream_org repo as origin."
 		fi	
 		echo " "	
 		#
@@ -44,14 +50,12 @@ do
 		if [ "$forked" -gt "0" ]; then
 			git clone git@github.com:$MY_GITHUB_NAME/$name $name
 			cd $name
-			git remote add upstream git@github.com:ManageIQ/$name
+			git remote add upstream git@github.com:$upstream_org/$name
 			cd ..
-		# 2b) Clone from ManageIQ namespace	
+		# 2b) Clone from ManageIQ/RedHatInsights namespace
 		elif [ "$forked" -eq "0" ]; then
-			git clone git@github.com:ManageIQ/$name
+			git clone git@github.com:$upstream_org/$name
 		fi	
 	fi
 	echo " "
 done
-
-

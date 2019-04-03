@@ -18,12 +18,12 @@ bundle exec rake db:migrate
 bundle exec rake db:seed
 
 echo "Setting Openshift Source to: $OPENSHIFT_SOURCE_UID"
-rails r "Source.create(:name => 'OpenShift Source', :tenant => Tenant.create, :uid =>'"$OPENSHIFT_SOURCE_UID"', :source_type => SourceType.find_by(:name => 'openshift'))"
+rails r "Source.create(:name => 'OpenShift Source', :tenant => Tenant.create(:external_tenant => '123', :uid =>'"$OPENSHIFT_SOURCE_UID"', :source_type => SourceType.find_by(:name => 'openshift'))"
 
 
 echo "Setting Amazon Source to: $AMAZON_SOURCE_UID"
-rails r "Source.create(:name => 'Amazon Source', :tenant => Tenant.create, :uid =>'"$AMAZON_SOURCE_UID"', :source_type => SourceType.find_by(:name => 'amazon'))"
+rails r "Source.create(:name => 'Amazon Source', :tenant => Tenant.where(:external_tenant => '123').first, :uid =>'"$AMAZON_SOURCE_UID"', :source_type => SourceType.find_by(:name => 'amazon'))"
 
 echo "Setting AnsibleTower Source to: $ANSIBLE_TOWER_SOURCE_UID"
-rails r "Source.create(:name => 'Ansible Tower Source', :tenant => Tenant.create, :uid => '"$ANSIBLE_TOWER_SOURCE_UID"', :source_type => SourceType.find_by(:name => 'ansible-tower'))"
+rails r "Source.create(:name => 'Ansible Tower Source', :tenant => Tenant.where(:external_tenant => '123').first, :uid => '"$ANSIBLE_TOWER_SOURCE_UID"', :source_type => SourceType.find_by(:name => 'ansible-tower'))"
 

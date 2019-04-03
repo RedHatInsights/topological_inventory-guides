@@ -82,8 +82,24 @@ do
 	touch Gemfile.dev.rb
 done
 
+#
+# 8) Configure UI
+#
 echo "-------------------------------------------------------"
-echo "Successfully cloned!"
+cd "$root_dir/insights-proxy"
+npm install
+sudo bash scripts/patch-etc-hosts.sh
+bash scripts/update.sh
+
+cd "$root_dir/insights-chrome"
+npm install
+npm run build
+
+cd "$root_dir/topological_inventory-ui"
+npm install
+
+echo "-------------------------------------------------------"
+echo "Successfully installed!"
 echo ""
 echo "--- And what next? ---"
 echo "Check all database.yml files (see above) and change db name if needed"
