@@ -18,13 +18,13 @@ if [ -z $requested_svc ]; then
 	tmux new-session -d -s TpInv
 
 	services=("kafka"
-		      "ingress-api"
+ 		  "ingress-api"
         	  "persister"
 	          "topological-api"
+		  "sources-api"
 	          "insights-proxy"
 	          "insights-chrome"
-	          "ui"
-	          #"sources-api"
+	          "ui"	        
 	          )
 
 	for service in ${services[@]}

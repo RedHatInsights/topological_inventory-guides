@@ -17,11 +17,17 @@ if [[ "$operation" == "install" || "$operation" == "update" ]]; then
 		echo "$name -------------------------------------------------------"
 	
 		cd $name
-		if [ "$operation" == "update" ]; then
-			bundle update
-		elif [ "$operation" == "install" ]; then
-			bundle install
+			
+		if [ -f ./Gemfile ]; then
+			if [ "$operation" == "update" ]; then
+				bundle update
+			elif [ "$operation" == "install" ]; then
+				bundle install
+			fi
+		else
+			echo "[SKIPPED] This repository doesn't have Gemfile"
 		fi
+
 		cd ..
 	done
 else

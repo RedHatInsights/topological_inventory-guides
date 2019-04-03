@@ -14,8 +14,14 @@ do
 	cd $name
 	git fetch --all --prune
 	git checkout master
-	git pull upstream master
-	git push origin master
+	
+	has_upstream=`git branch -a | grep upstream | wc  -l`
+
+	if [ "$has_upstream" -gt "0" ]; then
+		git pull upstream master
+	else
+		git pull origin master
+	fi
 	cd ..
 done
 

@@ -66,6 +66,8 @@ Starting Persister and API services is pretty easy:
 - Switch to `scripts` directory (symlink was added to your repository `root_dir` by installation script)
 - Run `start.sh`
 
+Note: by default, topological inventory API is running on `localhost:3001`, sources API on `localhost:3002`. You can change it in `config.sh`
+
 Starting collectors and operation workers:
 - Fill service env variables (like credentials) in `scripts/config.sh` 
 - Run `start.sh <service_name>`
@@ -89,8 +91,8 @@ Collectors are responsible for collecting data from providers. Actually availabl
 
 ## UI
 
-*TODO*
-
+When all services are started, access UI in browser on this URL:
+https://ci.foo.redhat.com:1337/insights/sources
 
 ## Reset your database
 

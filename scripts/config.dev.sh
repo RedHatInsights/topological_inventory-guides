@@ -12,7 +12,7 @@ root_dir="/home/mslemr/Projects/topological-inventory"
 # Kafka queue
 # Get latest release URL at https://kafka.apache.org/quickstart
 export KAFKA_INSTALL_URL="http://mirror.dkm.cz/apache/kafka/2.2.0/kafka_2.12-2.2.0.tgz"
-# Directory below is created automatically by script setup-tp-inv.sh
+# Directory below is created automatically by script install.sh
 export KAFKA_DIR="$root_dir/kafka"
 export QUEUE_HOST="localhost" # used by openshift-operations
 export QUEUE_PORT="9092"
@@ -34,6 +34,11 @@ export TOPOLOGICAL_INVENTORY_API_SERVICE_HOST="http://localhost" # used by opens
 export TOPOLOGICAL_INVENTORY_API_SERVICE_PORT=3000
 # Uncomment if you want to disable tenancy
 #export BYPASS_TENANCY=1
+
+# Sources API service
+export SOURCES_API_DIR="$root_dir/sources-api"
+export SOURCES_API_SERVICE_HOST="http://localhost" # not used now
+export SOURCES_API_SERVICE_PORT=3002
 
 # Mock Source
 export MOCK_SOURCE_DIR="$root_dir/topological_inventory-mock_source"
