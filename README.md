@@ -31,6 +31,8 @@ Just get the current link to latest stable archive there: https://kafka.apache.o
 Docker is needed for running UI service.
 Installations steps here: https://docs.docker.com/install/linux/docker-ce/fedora/
 
+Mac users: https://docs.docker.com/docker-for-mac/install/
+
 **NPM**
 
 NPM is needed for running UI service (and insights proxy)
