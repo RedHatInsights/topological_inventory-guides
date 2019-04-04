@@ -86,5 +86,8 @@ repositories=("topological_inventory-api"
 	      "sources-api"
               "sources-api-client-ruby"
               "inventory_refresh"
+              "insights-proxy"
+              "insights-chrome"
+              "topological_inventory-ui"
 	     )
 
