@@ -76,18 +76,16 @@ export TOPOLOGICAL_INVENTORY_UI_DIR="$root_dir/topological_inventory-ui"
 # Array of repositories maintained by other scripts
 repositories=("topological_inventory-api"
               "topological_inventory-api-client-ruby"
-	      "topological_inventory-core"
+	          "topological_inventory-core"
               "topological_inventory-ingress_api"
               "topological_inventory-ingress_api-client-ruby"
-	      "topological_inventory-persister"		   
+	          "topological_inventory-persister"
               "topological_inventory-amazon"
               "topological_inventory-mock_source"
               "topological_inventory-openshift"
-	      "sources-api"
+	          "sources-api"
               "sources-api-client-ruby"
               "inventory_refresh"
               "insights-proxy"
               "insights-chrome"
-              "topological_inventory-ui"
-	     )
-
+              "topological_inventory-ui")
