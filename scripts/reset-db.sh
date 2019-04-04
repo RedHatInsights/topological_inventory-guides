@@ -10,11 +10,11 @@ cd $root_dir
 cd topological_inventory-core
 bundle exec rake db:setup
 
-cd ../topological_inventory-api
+cd ../sources-api
+bundle exec rake db:migrate
 bundle exec rake db:seed
 
-cd ../source-api
-bundle exec rake db:migrate
+cd ../topological_inventory-api
 bundle exec rake db:seed
 
 echo "Setting Openshift Source to: $OPENSHIFT_SOURCE_UID"
