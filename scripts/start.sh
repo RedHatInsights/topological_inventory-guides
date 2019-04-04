@@ -7,9 +7,11 @@ requested_svc=$1
 
 if [ -z $requested_svc ]; then
 
-    # binding a dir into a container does not work when enforcing
-    echo "Checking if Enforcing"
-    getenforce | grep Enforcing && sudo setenforce 0
+    if [ $MAC_OS == false ]; then
+      # binding a dir into a container does not work when enforcing
+      echo "Checking if Enforcing"
+      getenforce | grep Enforcing && sudo setenforce 0
+    fi
 
     # start docker if not running
     echo "Checking Docker"
