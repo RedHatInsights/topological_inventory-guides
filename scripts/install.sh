@@ -1,5 +1,6 @@
 #!/bin/bash --login
 #
+set -e
 source config.sh
 source init-common.sh
 
