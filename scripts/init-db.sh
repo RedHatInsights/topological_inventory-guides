@@ -1,7 +1,7 @@
 #!/bin/bash --login
 
 source config.sh
-source init-common
+source init-common.sh
 
 cwd=$(pwd)
 
