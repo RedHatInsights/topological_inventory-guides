@@ -7,13 +7,28 @@ requested_svc=$1
 
 if [ -z $requested_svc ]; then
 
-    # binding a dir into a container does not work when enforcing
-    echo "Checking if Enforcing"
-    getenforce | grep Enforcing && sudo setenforce 0
+    if [ $MAC_OS == false ]; then
+      # binding a dir into a container does not work when enforcing
+      echo "Checking if Enforcing"
+      getenforce | grep Enforcing && sudo setenforce 0
+    fi
 
     # start docker if not running
     echo "Checking Docker"
-    service docker status | grep inactive && sudo service docker start
+    if [ $MAC_OS == true ]; then
+      if (! docker stats --no-stream ); then
+        # On Mac OS this would be the terminal command to launch Docker
+        open /Applications/Docker.app
+        #Wait until Docker daemon is running and has completed initialisation
+      while (! docker stats --no-stream ); do
+        # Docker takes a few seconds to initialize
+        echo "Waiting 20s for Docker to launch..."
+        sleep 20
+      done
+      fi
+    else
+      service docker status | grep inactive && sudo service docker start
+    fi
 
 	tmux new-session -d -s TpInv
 

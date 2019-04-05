@@ -9,6 +9,12 @@ export MY_GITHUB_TOKEN=""
 # created by install script install.sh
 root_dir="/home/mslemr/Projects/topological-inventory"
 
+if [ "$(uname)" == "Darwin" ]; then
+  export MAC_OS=true
+else
+  export MAC_OS=false
+fi
+
 # Kafka queue
 # Get latest release URL at https://kafka.apache.org/quickstart
 export KAFKA_INSTALL_URL="http://mirror.dkm.cz/apache/kafka/2.2.0/kafka_2.12-2.2.0.tgz"
