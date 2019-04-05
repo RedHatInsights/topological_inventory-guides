@@ -96,9 +96,11 @@ Collectors are responsible for collecting data from providers. Actually availabl
 When all services are started, access UI in browser on this URL:
 https://ci.foo.redhat.com:1337/insights/sources
 
-## Reset your database
+## Maintenance
 
-It resets your database and seeds basic data including Sources 
+- [pull.sh](scripts/pull.sh): Checkouts all repos to master and pulls changes
+- [bundle.sh](scripts/bundle.sh): Bundles all repositories which contains Gemfile
+- [update.sh](scripts/update.sh): Bundles repositories with Gemfile, runs npm build on UI, insights-chrome and insights-proxy repositories and runs migrations on `topological_inventory-core` and `sources-api`
+- [reset-db.sh](scripts/reset-db.sh): Resets database (**deletes existing data!**) and seeds + creates Sources
 
-[reset-db.sh](scripts/reset-db.sh)
 
