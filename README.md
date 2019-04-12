@@ -8,7 +8,7 @@ These guides describes how to install and run Topological Inventory
 
 Ruby version manager
 https://rvm.io/rvm/install  
-If you're not using rvm, just remove content of [init-common.sh](scripts/init-common.sh)
+If you're not using rvm, just remove content of [init-common.sh](scripts/init-common.sh) in case of problems.
 If you're using rvm, create gemset for this project.
 
 **TMUX**
@@ -53,10 +53,11 @@ Config file contains all information for installation and running services.
 
 - Switch to `scripts` directory 
 - Run [install.sh](scripts/install.sh)
-- Check your database.yml files if you want custom db name in repositories (all must point to the same db):
+- Check your `config/database.yml` files if you want custom db name for **topological_inventory** service in repositories (all must point to the same db):
   - topological_inventory-api
   - topological_inventory-core
   - topological_inventory-persister
+- Check your `config/database.yml` if you want custom db name for **sources** service
   - sources-api
 - Run [init-db.sh](scripts/init-db.sh)
   - If your db exists, you can run only [reset-db.sh](scripts/reset-db.sh) (existing data will be lost!)

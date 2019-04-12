@@ -5,8 +5,11 @@ source init-common.sh
 
 cwd=$(pwd)
 
-cd "$root_dir/topological_inventory-api"
+cd $TOPOLOGICAL_API_DIR
 
+bundle exec rake db:create
+
+cd $SOURCES_API_DIR
 bundle exec rake db:create
 
 cd $cwd

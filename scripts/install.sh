@@ -52,7 +52,7 @@ gem install bundler
 ./bundle.sh update
 
 # 
-# 6) create database.yml based on topological_inventory-api's database.dev.yml
+# 6) create database.yml based on topological_inventory-api's/sources-api's database.dev.yml
 # 
 echo "-------------------------------------------------------"
 echo "Copying database.yml from topological_inventory-api/config/database.dev.yml..."
@@ -62,9 +62,11 @@ echo "topological_inventory-api/config/database.yml"
 cp config/database.dev.yml config/database.yml
 echo "topological_inventory-core/config.database.yml"
 cp config/database.dev.yml ../topological_inventory-core/config/database.yml
-echo "topological_inventory-persister/config.database.yml"
+echo "topological_inventory-persister/config/database.yml"
 cp config/database.dev.yml ../topological_inventory-persister/config/database.yml
+echo "Copying database.yml from sources-api/config/database.dev.yml..."
 echo "sources-api/config/database.yml"
+cd $SOURCES_API_DIR
 cp config/database.dev.yml ../sources-api/config/database.yml
 
 #
