@@ -34,8 +34,8 @@ if [[ -z ${requested_svc} ]]; then
 	tmux new-session -d -s TpInv
 
 	services=("kafka"
-              "ingress-api"
-        	  "persister"
+              "persister"
+        	  "ingress-api"
 	          "topological-api"
 		      "sources-api"
 		      "sources-sync"
