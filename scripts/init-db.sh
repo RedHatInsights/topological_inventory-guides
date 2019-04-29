@@ -5,13 +5,13 @@ source init-common.sh
 
 cwd=$(pwd)
 
-cd $TOPOLOGICAL_API_DIR
+cd ${TOPOLOGICAL_API_DIR}
 
 bundle exec rake db:create
 
-cd $SOURCES_API_DIR
+cd ${SOURCES_API_DIR}
 bundle exec rake db:create
 
-cd $cwd
-./reset-db.sh
+cd ${cwd}
+reset-dbs.sh
 

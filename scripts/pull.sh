@@ -17,7 +17,7 @@ do
 	
 	has_upstream=`git branch -a | grep upstream | wc  -l`
 
-	if [ "$has_upstream" -gt "0" ]; then
+	if [[ "$has_upstream" -gt "0" ]]; then
 		git pull upstream master
 	else
 		git pull origin master

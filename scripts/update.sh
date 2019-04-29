@@ -7,7 +7,7 @@
 source config.sh
 source init-common.sh
 
-cd $root_dir
+cd ${root_dir}
 
 operation=$1
 
@@ -15,17 +15,17 @@ for name in ${repositories[@]}
 do
 	echo "$name -------------------------------------------------------"
 	
-	cd $name
+	cd ${name}
 		
-	if [ -f ./Gemfile ]; then
+	if [[ -f ./Gemfile ]]; then
 		bundle update
-	elif [[ $name == "insights-proxy" ]]; then
+	elif [[ ${name} == "insights-proxy" ]]; then
 		npm install
 		./scripts/update.sh
-	elif [[ $name == "insights-chrome" ]]; then
+	elif [[ ${name} == "insights-chrome" ]]; then
 		npm install
 		npm run build
-	elif [[ $name == "topological_inventory-ui" ]]; then
+	elif [[ ${name} == "topological_inventory-ui" ]]; then
 		npm install
 	else						
 		echo "[SKIPPED] This repository doesn't have Gemfile"
