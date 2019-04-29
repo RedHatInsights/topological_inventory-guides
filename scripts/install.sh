@@ -11,19 +11,21 @@ cwd=$(pwd)
 #
 echo "-------------------------------------------------------"
 echo "Creating root directory..."
-mkdir -p $root_dir
-cd $root_dir
+mkdir -p ${root_dir}
+cd ${root_dir}
 
 #
 # 2) download kafka
 #
-echo "-------------------------------------------------------"
-echo "Downloading Kafka..."
-wget -O kafka.tgz $KAFKA_INSTALL_URL
-tar -xzf kafka.tgz
-mv ./kafka_* ./kafka
+if [[ ! -d './kafka' ]]; then
+    echo "-------------------------------------------------------"
+    echo "Downloading Kafka..."
+    wget -O kafka.tgz $KAFKA_INSTALL_URL
+    tar -xzf kafka.tgz
+    mv ./kafka_* ./kafka
+fi
 
-cd $cwd
+cd ${cwd}
 #
 # 3) make all scripts executable
 #
@@ -32,7 +34,7 @@ echo "Making these scripts executable, creating symlink..."
 chmod 744 ./*.sh
 chmod 744 ./services/*.sh
 
-ln -s $cwd $root_dir/scripts
+ln -s ${cwd} ${root_dir}/scripts
 
 #
 # 4) clone forked/manageiq repos (checks for forks automatically)
@@ -40,7 +42,7 @@ ln -s $cwd $root_dir/scripts
 #
 echo "-------------------------------------------------------"
 echo "Cloning repositories..."
-cd $cwd
+cd ${cwd}
 ./clone.sh
 
 #
@@ -56,18 +58,34 @@ gem install bundler
 # 
 echo "-------------------------------------------------------"
 echo "Copying database.yml from topological_inventory-api/config/database.dev.yml..."
-cd $root_dir
-cd ./topological_inventory-api
-echo "topological_inventory-api/config/database.yml"
-cp config/database.dev.yml config/database.yml
-echo "topological_inventory-core/config.database.yml"
-cp config/database.dev.yml ../topological_inventory-core/config/database.yml
-echo "topological_inventory-persister/config/database.yml"
-cp config/database.dev.yml ../topological_inventory-persister/config/database.yml
-echo "Copying database.yml from sources-api/config/database.dev.yml..."
-echo "sources-api/config/database.yml"
-cd $SOURCES_API_DIR
-cp config/database.dev.yml ../sources-api/config/database.yml
+
+cd ${TOPOLOGICAL_API_DIR}
+dev_ymls=("config/database.yml"
+          "../topological_inventory-core/config/database.yml"
+          "../topological_inventory-persister/config/database.yml"
+          "../topological_inventory-sync/config/database.yml")
+
+echo "Copying ${TOPOLOGICAL_API_DIR}/config/database.dev.yml"
+for dest_path in ${dev_ymls[@]}; do
+    if [[ -f ${dest_path} ]]; then
+        echo "[SKIPPED] File already exists: ${dest_path}"
+    else
+        cp config/database.dev.yml ${dest_path}
+        echo "[OK] Copied to: ${dest_path}"
+    fi
+done
+
+echo "-------------------------------------------------------"
+echo "Copying ${SOURCES_API_DIR}/config/database.dev.yml"
+cd ${SOURCES_API_DIR}
+
+dest_path="../sources-api/config/database.yml"
+if [[ -f ${dest_path} ]]; then
+    echo "[SKIPPED] File already exists: ${dest_path}"
+else
+    cp config/database.dev.yml ${dest_path}
+    echo "[OK] Copied to: ${dest_path}"
+fi
 
 #
 # 7) creates Gemfile.dev.rb
@@ -77,12 +95,17 @@ echo "Creating Gemfile.dev.rb..."
 for name in ${repositories[@]}
 do
 	cd "$root_dir/$name"
-	if [ ! -d "$root_dir/$name/bundler.d" ]; then
-		mkdir bundler.d
-		touch ./bundler.d/.gitkeep
-	fi
-	cd bundler.d
-	touch Gemfile.dev.rb
+	if [[ -f ./Gemfile ]]; then
+        if [[ ! -d "$root_dir/$name/bundler.d" ]]; then
+            mkdir bundler.d
+            touch ./bundler.d/.gitkeep
+        fi
+        cd bundler.d
+        touch Gemfile.dev.rb
+        echo "[OK] ${name}: Created bundler.d/Gemfile.dev.rb"
+    else
+        echo "[SKIPPED] ${name}: No Gemfile in project"
+    fi
 done
 
 #
@@ -105,11 +128,11 @@ echo "-------------------------------------------------------"
 echo "Successfully installed!"
 echo ""
 echo "--- And what next? ---"
-echo "Check all database.yml files (see above) and change db name if needed"
-echo "Run ./init-db.sh to create and initialize database"
-echo "Run ./reset-db.sh to reset and initialize database if exists"
-echo "Run ./start.sh to run persister and api services in TMUX"
-echo "Run ./start.sh <svc> to run service (see list in services directory)"
+echo "* Check all database.yml files (see above) and change db name if needed"
+echo "* Run ./init-db.sh to create and initialize database, or:"
+echo "    run ./reset-db.sh to reset and initialize database if exists"
+echo "* Run ./start.sh to run persister and api services in TMUX"
+echo "* Run ./start.sh <svc> to run service (see list in services directory)"
 echo ""
 
 LANG=C DOW=$(date +"%a")
