@@ -58,7 +58,7 @@ export SOURCES_PORT="3002"
 export MOCK_SOURCE_DIR="$root_dir/topological_inventory-mock_source"
 export MOCK_SOURCE_UID="5eebe172-7baa-4280-823f-19e597d091e9"
 export MOCK_SOURCE_CONFIG="simple"
-export MOCK_SOURCE_AMOUNTS="small"
+export MOCK_SOURCE_DATA="small"
 
 # Openshift
 export OPENSHIFT_DIR="$root_dir/topological_inventory-openshift"
