@@ -7,6 +7,7 @@ source ./init-common.sh
 requested_svc=$1
 
 if [[ -z ${requested_svc} ]]; then
+    ./services/kafka.sh stop
     tmux kill-session -t TpInv
 
     container_id=`docker container ls | grep "insights-proxy" | awk '{print $1}'`
