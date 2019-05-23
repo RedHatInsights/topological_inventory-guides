@@ -27,6 +27,9 @@ export KAFKA_DIR="$root_dir/kafka"
 export QUEUE_HOST="localhost" # used by openshift-operations
 export QUEUE_PORT="9092"
 
+# Disable prometheus
+export METRICS_PORT=0
+
 # RVM ruby version & gemset 
 export RVM_RUBY_VERSION_TP_INV="2.5.3"
 export RVM_GEMSET_NAME_TP_INV="tp-inv"
