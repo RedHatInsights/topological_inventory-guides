@@ -20,8 +20,6 @@ for name in ${repositories[@]}
 do
     if [[ ${name} == "insights-proxy" || ${name} == "insights-chrome" ]]; then
         upstream_org="RedHatInsights"
-    elif [[ ${name} == "topological_inventory-sync" ]]; then
-        upstream_org="agrare"
     else
         upstream_org="ManageIQ"
     fi
