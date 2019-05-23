@@ -59,13 +59,13 @@ export SOURCES_PORT="3002"
 
 # Mock Source
 export MOCK_SOURCE_DIR="$root_dir/topological_inventory-mock_source"
-export MOCK_SOURCE_UID="5eebe172-7baa-4280-823f-19e597d091e9"
+export MOCK_SOURCE_UID="5eebe172-7baa-4280-823f-19e597d091e9"  # random value for dev
 export MOCK_SOURCE_CONFIG="simple"
 export MOCK_SOURCE_DATA="small"
 
 # Openshift
 export OPENSHIFT_DIR="$root_dir/topological_inventory-openshift"
-export OPENSHIFT_SOURCE_UID="31b5338b-685d-4056-ba39-d00b4d7f19cc"
+export OPENSHIFT_SOURCE_UID="31b5338b-685d-4056-ba39-d00b4d7f19cc"  # random value for dev
 export OPENSHIFT_SCHEME="https"
 export OPENSHIFT_HOST=""
 export OPENSHIFT_PORT=""
@@ -75,11 +75,14 @@ export OPENSHIFT_API_PATH="/api" # kubernetes API
 
 # Amazon
 export AMAZON_DIR="$root_dir/topological_inventory-amazon"
-export AMAZON_SOURCE_UID="592ba27a-2b89-11e9-b210-d663bd873d93"
+export AMAZON_SOURCE_UID="592ba27a-2b89-11e9-b210-d663bd873d93" # random value for dev
+export AMAZON_ACCESS_KEY_ID=""
+export AMAZON_SECRET_ACCESS_KEY=""
+
 
 # Ansible Tower
 export ANSIBLE_TOWER_DIR="$root_dir/topological_inventory-ansible_tower"
-export ANSIBLE_TOWER_SOURCE_UID="23d05717-ad56-4eec-8c34-cc0322e2c411"
+export ANSIBLE_TOWER_SOURCE_UID="23d05717-ad56-4eec-8c34-cc0322e2c411"  # random value for dev
 export ANSIBLE_TOWER_SCHEME="https"
 export ANSIBLE_TOWER_HOST=""
 export ANSIBLE_TOWER_USER=""
