@@ -18,6 +18,7 @@ do
 
 
 	if git diff-index --quiet HEAD --; then
+		echo "* Updating (rebase) branch ${current_branch}"
 		git fetch --all --prune
 		git checkout master
 	
@@ -28,8 +29,13 @@ do
 		else
 			git pull origin master
 		fi
+
+		if [[ ${current_branch} -ne "master" ]]; then
+			git checkout ${current_branch}
+			git rebase master
+		fi
 	else
-		echo "Changes in branch ${current_branch}"
+		echo "Cannot update branch ${current_branch}: Modified files present"
 		modified_repos+=($name)
 	fi
 	
