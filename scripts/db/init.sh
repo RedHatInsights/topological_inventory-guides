@@ -13,4 +13,5 @@ cd ${SOURCES_API_DIR}
 bundle exec rake db:create
 
 cd ${cwd}
-reset.sh
+db/migrate.sh
+db/init-data.sh

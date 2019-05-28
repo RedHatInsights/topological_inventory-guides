@@ -3,6 +3,7 @@
 source config.sh
 source init-common.sh
 
+cd ${TOPOLOGICAL_API_DIR}
 echo "Creating Tenants"
 rails r "Tenant.first_or_create!(:external_tenant => '$MY_GITHUB_NAME')"
 

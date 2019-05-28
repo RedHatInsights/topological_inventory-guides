@@ -19,4 +19,4 @@ cd ${TOPOLOGICAL_API_DIR}
 bundle exec rake db:migrate
 bundle exec rake db:seed
 
-./init-data.sh
+db/init-data.sh
