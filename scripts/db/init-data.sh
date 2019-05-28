@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-source ../config.sh
-source ../init-common.sh
+source config.sh
+source init-common.sh
 
 echo "Creating Tenants"
 rails r "Tenant.find_or_create!(:external_tenant => '$MY_GITHUB_NAME')"

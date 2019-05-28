@@ -29,7 +29,7 @@ do
 	# 1) Check if repo already cloned
 	#
 	if [[ -d "$root_dir/$name" ]]; then
-		echo "* [SKIPPED] Cloning into: $name"
+		echo "* [INFO][SKIPPED] Cloning into: $name"
 		echo "* Repository directory already found"
 	else
 		echo "* Cloning into: $name"
@@ -38,9 +38,9 @@ do
 		#
 		forked=`curl --silent -H "Authorization: token ${MY_GITHUB_TOKEN}" -X GET "https://api.github.com/repos/$MY_GITHUB_NAME/$name" | grep "\"name\": \"$name\"" | wc -l`
 		if [[ "$forked" -gt "0" ]]; then
-			echo "[FOUND] Fork git@github.com:$MY_GITHUB_NAME/$name"
+			echo "[INFO][FOUND] Fork git@github.com:$MY_GITHUB_NAME/$name"
 		else
-			echo "[NOT FOUND] Fork git@github.com:$MY_GITHUB_NAME/$name not found. Using $upstream_org repo as origin."
+			echo "[INFO][NOT FOUND] Fork git@github.com:$MY_GITHUB_NAME/$name not found. Using $upstream_org repo as origin."
 		fi	
 		echo " "	
 		#

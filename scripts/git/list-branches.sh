@@ -4,7 +4,7 @@
 # Switches to master branches
 #
 # NOTE: Edit your variables below!
-source ../config.sh
+source config.sh
 
 cd $root_dir
 

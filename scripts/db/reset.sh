@@ -2,8 +2,8 @@
 # Script for reset and initialization Topological inventory database
 #
 # NOTE: Edit your variables below
-source ../config.sh
-source ../init-common.sh
+source config.sh
+source init-common.sh
 
 cd ${root_dir}
 

@@ -1,7 +1,7 @@
 #!/bin/bash --login
 
-source ../config.sh
-source ../init-common.sh
+source config.sh
+source init-common.sh
 
 cd ${root_dir}
 
