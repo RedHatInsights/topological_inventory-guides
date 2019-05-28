@@ -77,7 +77,7 @@ Starting collectors and operation workers:
 - Fill service env variables (like credentials) in `scripts/config.sh` 
 - Run `start.sh <service_name>`
 
-You can find list of service names in [services](scripts/services) dir. `service_name` param is equal to script name without ".sh" suffix.
+You can find list by running [list-services.sh](scripts/list-services.sh).
 
 ## Restarting services
 - Run `restart.sh <service_name>` 
@@ -97,12 +97,26 @@ Collectors are responsible for collecting data from providers. Actually availabl
 ## UI
 
 When all services are started, access UI in browser on this URL:
-https://ci.foo.redhat.com:1337/insights/sources
+https://ci.foo.redhat.com:1337/insights/settings/sources
 
-## Maintenance
+## Maintenance / Daily operations
 
-- [pull.sh](scripts/pull.sh): Checkouts all repos to master and pulls changes
+Following scripts helps with commonly used mass operations.
+
+### GIT
+
+- [pull.sh](scripts/git/pull.sh): Checkouts all unchanged repos to master and pulls changes
+- [rebase.sh](scripts/git/rebase.sh): For all unchanged repos does the same as pull.sh and then rebases your current branch.
+- [list-branches.sh](scripts/git/list-branches.sh): Prints current branches in all repos 
+- [clone.sh](scripts/git/clone.sh): Cloning of repositories specified in config.sh. Part of install script.
+
+### Database
+- [init.sh](scripts/db/init.sh): Creates databases, runs migrations and init-data.sh
+- [init-data.sh](scripts/db/init-data.sh): Seeds, creates Tenants, SourceTypes and Sources
+- [reset-dbs.sh](scripts/db/reset.sh): Resets databases (**deletes existing data!**) and seeds + creates Sources
+- [migrate.sh](scripts/db/migrate.sh): Migrates both databases
+
+### Other
+
 - [bundle.sh](scripts/bundle.sh): Bundles all repositories which contains Gemfile
 - [update.sh](scripts/update.sh): Bundles repositories with Gemfile, runs npm build on UI, insights-chrome and insights-proxy repositories and runs migrations on `topological_inventory-core` and `sources-api`
-- [reset-dbs.sh](scripts/reset-dbs.sh): Resets database (**deletes existing data!**) and seeds + creates Sources
-- [migrate-dbs.sh](scripts/migrate-dbs.sh): Migrates topological-inventory and sources databases

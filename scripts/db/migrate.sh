@@ -12,7 +12,7 @@ cd ..
 echo "[DONE] Migrating Topological Inventory"
 
 echo "Migrating Sources"
-cd sources-api
+cd ${SOURCES_API_DIR}
 bundle exec rake db:migrate
 cd ..
 echo "[DONE] Migrating Sources"
