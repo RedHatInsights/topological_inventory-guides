@@ -52,7 +52,7 @@ if [[ -z ${requested_svc} ]]; then
 	    start_svc_in_tmux ${service}
 	done
 
-	# google-chrome https://ci.foo.redhat.com:1337/insights/sources	
+	# google-chrome https://ci.foo.redhat.com:1337/insights/settings/sources
 
 	tmux attach-session -t TpInv
 else

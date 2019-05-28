@@ -13,10 +13,9 @@ bundle exec rake db:setup
 cd ${SOURCES_API_DIR}
 bundle exec rake db:setup
 bundle exec rake db:migrate
-bundle exec rake db:seed
 
 cd ${TOPOLOGICAL_API_DIR}
 bundle exec rake db:migrate
-bundle exec rake db:seed
 
+cd ${root_dir}/scripts
 db/init-data.sh
