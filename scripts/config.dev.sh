@@ -1,7 +1,8 @@
 # Your Github account name used for cloning
 export MY_GITHUB_NAME="" # https://github.com/<MY_GITHUB_NAME>/<repository name>
+
 # Get Github API token there
-# Needed for Github API requests
+# Needed for Github API requests, read only access is enough
 # https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line
 export MY_GITHUB_TOKEN=""
 

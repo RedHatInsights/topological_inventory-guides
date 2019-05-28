@@ -63,6 +63,7 @@ cd ${TOPOLOGICAL_API_DIR}
 dev_ymls=("config/database.yml"
           "../topological_inventory-core/config/database.yml"
           "../topological_inventory-persister/config/database.yml"
+          "../topological_inventory-ingress_api/config/database.yml"
           "../topological_inventory-sync/config/database.yml")
 
 echo "Copying ${TOPOLOGICAL_API_DIR}/config/database.dev.yml"
