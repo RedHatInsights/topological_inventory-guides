@@ -114,6 +114,8 @@ done
 echo "-------------------------------------------------------"
 cd "$root_dir/insights-proxy"
 npm install
+
+echo "Patching /etc/hosts, please provide sudo credentials"
 sudo bash scripts/patch-etc-hosts.sh
 bash scripts/update.sh
 
