@@ -1,7 +1,7 @@
 #!/bin/bash --login
 
-source config.sh
-source init-common.sh
+source ../config.sh
+source ../init-common.sh
 
 cwd=$(pwd)
 
@@ -13,5 +13,4 @@ cd ${SOURCES_API_DIR}
 bundle exec rake db:create
 
 cd ${cwd}
-reset-dbs.sh
-
+reset.sh

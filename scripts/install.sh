@@ -43,7 +43,7 @@ ln -s ${cwd} ${root_dir}/scripts
 echo "-------------------------------------------------------"
 echo "Cloning repositories..."
 cd ${cwd}
-./clone.sh
+./git/clone.sh
 
 #
 # 5) bundle gems
@@ -129,12 +129,11 @@ echo "Successfully installed!"
 echo ""
 echo "--- And what next? ---"
 echo "* Check all database.yml files (see above) and change db name if needed"
-echo "* Run ./init-db.sh to create and initialize database, or:"
-echo "    run ./reset-db.sh to reset and initialize database if exists"
+echo "* Run ./db/init.sh to create and initialize database, or:"
+echo "    run ./db/reset.sh to reset and initialize database if exists"
 echo "* Run ./start.sh to run persister and api services in TMUX"
-echo "* Run ./start.sh <svc> to run service (see list in services directory)"
+echo "* Run ./start.sh <svc> to run service (run ./list-services.sh to see list of services)"
 echo ""
 
 LANG=C DOW=$(date +"%a")
 echo "Happy $DOW! :)"
-

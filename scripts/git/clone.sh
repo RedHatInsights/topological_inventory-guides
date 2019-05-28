@@ -11,7 +11,7 @@
 # Usage: clone.sh
 #
 # NOTE: Edit your variables below!
-source config.sh
+source ../config.sh
 
 mkdir -p ${root_dir}
 cd ${root_dir}

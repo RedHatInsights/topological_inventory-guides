@@ -3,7 +3,6 @@
 # Script for mass bundle topology inventory plugins
 # Usage: update.sh
 #
-# NOTE: Edit your variables below!
 source config.sh
 source init-common.sh
 
@@ -21,7 +20,6 @@ do
 		bundle update
 	elif [[ ${name} == "insights-proxy" ]]; then
 		npm install
-		./scripts/update.sh
 	elif [[ ${name} == "insights-chrome" ]]; then
 		npm install
 		npm run build
@@ -34,14 +32,4 @@ do
 	cd ..
 done
 
-echo "Migrating Topological inventory: core"
-cd topological_inventory-core
-bundle exec rake db:migrate
-cd ..
-
-echo "Migrating Sources API"
-cd sources-api
-bundle exec rake db:migrate
-cd ..
-
-
+db/migrate.sh

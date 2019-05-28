@@ -3,7 +3,7 @@
 # Script for mass bundle topology inventory plugins
 # Usage: bundle.sh [install|update]
 #
-# NOTE: Edit your variables below!
+# NOTE: Edit variables in config.sh!
 source config.sh
 source init-common.sh
 

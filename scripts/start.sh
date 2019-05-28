@@ -49,14 +49,7 @@ if [[ -z ${requested_svc} ]]; then
 		echo "(Re)starting $service"
 		stop_svc_in_tmux ${service}
  
-		if [[ ${service} == "kafka" ]]; then
-			tmux new-window -t TpInv -n kafka "services/kafka.sh start"
-			echo "Waiting for Kafka initialization 20 sec..."
-			sleep 20
-			echo "Done"
-		else
-		    start_svc_in_tmux ${service}
-		fi
+	    start_svc_in_tmux ${service}
 	done
 
 	# google-chrome https://ci.foo.redhat.com:1337/insights/sources	
