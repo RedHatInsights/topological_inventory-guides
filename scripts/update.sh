@@ -32,4 +32,4 @@ do
 	cd ..
 done
 
-db/migrate.sh
+${root_dir}/scripts/db/migrate.sh
