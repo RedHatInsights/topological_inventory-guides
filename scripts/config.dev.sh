@@ -14,7 +14,7 @@ export X_RH_IDENTITY=$(echo "{\"identity\":{\"account_number\":\"${GITHUB_NAME}\
 # created by install script install.sh
 root_dir="/home/mslemr/Projects/topological-inventory"
 
-if [ "$(uname)" == "Darwin" ]; then
+if [[ "$(uname)" == "Darwin" ]]; then
   export MAC_OS=true
 else
   export MAC_OS=false
@@ -31,7 +31,8 @@ export QUEUE_PORT="9092"
 # Disable prometheus
 export METRICS_PORT=0
 
-# RVM ruby version & gemset 
+# RVM ruby version & gemset
+# Optional, if you're using RVM
 export RVM_RUBY_VERSION_TP_INV="2.5.3"
 export RVM_GEMSET_NAME_TP_INV="tp-inv"
 

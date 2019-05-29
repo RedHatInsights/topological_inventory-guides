@@ -109,6 +109,7 @@ Following scripts helps with commonly used mass operations.
 - [rebase.sh](scripts/git/rebase.sh): For all unchanged repos does the same as pull.sh and then rebases your current branch.
 - [list-branches.sh](scripts/git/list-branches.sh): Prints current branches in all repos 
 - [clone.sh](scripts/git/clone.sh): Cloning of repositories specified in config.sh. Part of install script.
+- [cleanup.sh](scripts/git/cleanup.sh): Deletes branches merged to master. Without arg: local branches, with `--remote-cleanup` also deletes merged remote branches.
 
 ### Database
 - [init.sh](scripts/db/init.sh): Creates databases, runs migrations and init-data.sh
