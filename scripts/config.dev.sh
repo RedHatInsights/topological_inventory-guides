@@ -111,7 +111,17 @@ repositories=("inventory_refresh"
               "topological_inventory-openshift"
               "topological_inventory-orchestrator"
               "topological_inventory-persister"
-#              "topological_inventory-deploy" #deprecated
               "topological_inventory-sync"
               "topological_inventory-ui"
              )
+
+start_by_default=("kafka"
+                  "persister"
+            	  "ingress-api"
+	              "topological-api"
+		          "sources-api"
+    		      "sources-sync"
+	              "insights-proxy"
+	              "insights-chrome"
+	              "ui"
+                 )

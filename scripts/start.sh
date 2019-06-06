@@ -1,5 +1,7 @@
 #!/bin/bash --login
-# Usage ./start.sh [service_name] 
+# Usage ./start.sh [service_name]
+#
+# List services by ./list_services.sh
 
 source config.sh
 source ./init-common.sh
@@ -33,18 +35,8 @@ if [[ -z ${requested_svc} ]]; then
 
 	tmux new-session -d -s TpInv
 
-	services=("kafka"
-              "persister"
-        	  "ingress-api"
-	          "topological-api"
-		      "sources-api"
-		      "sources-sync"
-	          "insights-proxy"
-	          "insights-chrome"
-	          "ui"	        
-	          )
-
-	for service in ${services[@]}
+    # Check config.sh for list of default services ($start_by_default)
+	for service in ${start_by_default[@]}
 	do
 		echo "(Re)starting $service"
 		stop_svc_in_tmux ${service}
