@@ -69,7 +69,7 @@ Config file contains all information for installation and running services.
 Starting Persister and API services is pretty easy:
 
 - Switch to `scripts` directory (symlink was added to your repository `root_dir` by installation script)
-- Run `start.sh`
+- Run `start.sh` (list of services can be redefined by defining variable `$start_by_default` in `config.sh` - see [repositories.sh](scripts/repositories.sh))
 
 Note: by default, topological inventory API is running on `localhost:3001`, sources API on `localhost:3002`. You can change it in `config.sh`
 
@@ -107,7 +107,8 @@ Following scripts helps with commonly used mass operations.
 
 - [pull.sh](scripts/git/pull.sh): Checkouts all unchanged repos to master and pulls changes
 - [rebase.sh](scripts/git/rebase.sh): For all unchanged repos does the same as pull.sh and then rebases your current branch.
-- [list-branches.sh](scripts/git/list-branches.sh): Prints current branches in all repos 
+- [list-branches.sh](scripts/git/list-branches.sh): Prints current branches in all repos
+- [list-changes.sh](scripts/git/list-changes.sh): Prints changes in all repos 
 - [clone.sh](scripts/git/clone.sh): Cloning of repositories specified in config.sh. Part of install script.
 - [cleanup.sh](scripts/git/cleanup.sh): Deletes branches merged to master. Without arg: local branches, with `--remote-cleanup` also deletes merged remote branches.
 
