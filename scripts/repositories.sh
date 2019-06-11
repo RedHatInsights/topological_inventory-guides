@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# List of repositories/services/directories/TMUX windows for all mass operations
+# This file is included in config[.dev].sh, redefine variables in your config.sh file if you need :)
 
 # Array of repositories maintained by other scripts
 repositories=("inventory_refresh"
@@ -20,6 +22,7 @@ repositories=("inventory_refresh"
               "topological_inventory-ui"
              )
 
+# When script "start.sh" is ran without parameters, these services are started.
 start_by_default=("kafka"
                   "persister"
             	  "ingress-api"
