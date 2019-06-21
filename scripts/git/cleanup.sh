@@ -26,22 +26,25 @@ do
     git remote prune origin
 
     # Remove local fully merged branches
-    git branch --merged master | grep -v 'master$' | xargs git branch -d
+    local_merged=$(git branch --merged master | grep -v 'master$')
+    if [[ -z ${local_merged} ]]; then
+        echo "No local branches to delete"
+    else
+        echo ${local_merged} | xargs git branch -d
+    fi
 
-    # Show remote fully merged branches
-    echo "The following remote branches are fully merged and will be removed:"
-    git branch -r --merged master | sed 's/ *origin\///' | grep -v 'master$'
 
     has_upstream=`git branch -a | grep upstream | wc  -l`
 
     if [[ ${remote_cleanup} -eq 1 && "$has_upstream" -gt "0" ]]
     then
-       # Remove remote fully merged branches
-       git branch -r --merged master | sed 's/ *origin\///' \
-                 | grep -v 'master$' | xargs -I% git push origin :%
-       echo "Done!"
+        remote_merged=$(git branch -r --merged master | sed 's/ *origin\///' | grep -v 'master$')
+        if [[ -z ${remote_merged} ]]; then
+           echo "No remote branches to delete"
+        else
+            # Remove remote fully merged branches
+            echo ${remote_merged} | xargs -I% git push origin :%
+        fi
     fi
-    echo "Obsolete branches are removed"
-
 	cd ..
 done
