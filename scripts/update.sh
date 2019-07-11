@@ -6,6 +6,8 @@
 source config.sh
 source init-common.sh
 
+previous_dir=`pwd`
+
 cd ${root_dir}
 
 operation=$1
@@ -31,5 +33,7 @@ do
 
 	cd ..
 done
+
+cd $previous_dir
 
 ${root_dir}/scripts/db/migrate.sh
