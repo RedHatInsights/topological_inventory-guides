@@ -25,6 +25,7 @@ do
 
 		if [[ "$has_upstream" -gt "0" ]]; then
 			git pull upstream master
+			git push origin master
 		else
 			git pull origin master
 		fi
