@@ -49,6 +49,8 @@ export TOPOLOGICAL_INVENTORY_SOURCES_SYNC_DIR="$root_dir/topological_inventory-s
 # Ingress API service (Persister <-> Collectors)
 export INGRESS_API_DIR="$root_dir/topological_inventory-ingress_api"
 export INGRESS_API="http://localhost:9292"
+export TOPOLOGICAL_INVENTORY_INGRESS_API_SERVICE_HOST="http://localhost"
+export TOPOLOGICAL_INVENTORY_INGRESS_API_SERVICE_PORT="9292"
 
 # Topological API service
 export TOPOLOGICAL_API_DIR="$root_dir/topological_inventory-api"
@@ -99,3 +101,5 @@ export INSIGHTS_PROXY_DIR="$root_dir/insights-proxy"
 export INSIGHTS_CHROME_DIR="$root_dir/insights-chrome"
 export TOPOLOGICAL_INVENTORY_UI_DIR="$root_dir/topological_inventory-ui"
 
+# Orchestrator
+export ORCHESTRATOR_DIR="$root_dir/topological_inventory-orchestrator"

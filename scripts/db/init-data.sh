@@ -12,11 +12,13 @@ bundle exec rake db:seed
 cd ${TOPOLOGICAL_API_DIR}
 echo "Creating Tenants"
 rails r "Tenant.find_or_create_by(:external_tenant => '$MY_GITHUB_NAME')"
+rails r "Tenant.find_or_create_by(:external_tenant => 'system_orchestrator')"
 
 cd ${SOURCES_API_DIR}
 rails r "Tenant.find_or_create_by(:name => '$MY_GITHUB_NAME', :external_tenant => '$MY_GITHUB_NAME')"
 # sources-sync tenant hardcoded in topological_inventory-sync/lib/topological_inventory/sync/sources_sync_worker.rb:77
 rails r "Tenant.find_or_create_by(:name => 'Tp-Inv Sources Sync service', :external_tenant => 'topological_inventory-sources_sync')"
+rails r "Tenant.find_or_create_by(:name => 'Orchestrator', :external_tenant => 'system_orchestrator')"
 
 echo "Creating Mock Source Type"
 rails r "SourceType.find_or_create_by(:name => 'mock-source', :product_name => 'Mock', :vendor => 'Red Hat', :schema => {})"
