@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+#
+# Create config.sh and write into it:
+# ```
+# root_dir="<your_dir>"
+# source config.default.sh
+# ```
 
 # You can redefine services started by default
 # in your config.sh
@@ -19,7 +25,9 @@ export X_RH_IDENTITY=$(echo "{\"identity\":{\"account_number\":\"${GITHUB_NAME}\
 
 # Root directory for cloned repositories
 # created by install script install.sh
-root_dir="/home/mslemr/Projects/topological-inventory"
+if [[ -z ${root_dir} ]]; then
+    root_dir="/home/mslemr/Projects/topological-inventory"
+fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
   export MAC_OS=true

@@ -116,7 +116,7 @@ echo "-------------------------------------------------------"
 cd "$root_dir/insights-proxy"
 npm install
 
-echo "Patching /etc/hosts, please provide sudo credentials"
+echo "Patching /etc/hosts to connect localhost with CI/QA servers, please provide sudo credentials"
 sudo bash scripts/patch-etc-hosts.sh
 bash scripts/update.sh
 
@@ -124,7 +124,7 @@ cd "$root_dir/insights-chrome"
 npm install
 npm run build
 
-cd "$root_dir/topological_inventory-ui"
+cd "$root_dir/sources-ui"
 npm install
 
 echo "-------------------------------------------------------"
