@@ -11,6 +11,13 @@
 # See start_by_default()
 source repositories.sh
 
+# Root directory for cloned repositories
+# created by install script install.sh
+if [[ -z ${root_dir} ]]; then
+    echo "Please specify \$root_dir variable in config.sh"
+    exit
+fi
+
 # Your Github account name used for cloning
 export MY_GITHUB_NAME="" # https://github.com/<MY_GITHUB_NAME>/<repository name>
 
@@ -22,12 +29,6 @@ export MY_GITHUB_TOKEN=""
 # Variable for HTTP request header x-rh-identity.
 # Requests authenticated against Tenant.external_tenant
 export X_RH_IDENTITY=$(echo "{\"identity\":{\"account_number\":\"${GITHUB_NAME}\"}}" | base64)
-
-# Root directory for cloned repositories
-# created by install script install.sh
-if [[ -z ${root_dir} ]]; then
-    root_dir="/home/mslemr/Projects/topological-inventory"
-fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
   export MAC_OS=true
