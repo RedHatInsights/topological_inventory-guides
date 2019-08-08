@@ -8,6 +8,7 @@ repositories=("inventory_refresh"
               "insights-proxy"
               "sources-api"
               "sources-api-client-ruby"
+              "sources-ui"
               "topological_inventory-amazon"
               "topological_inventory-ansible_tower"
               "topological_inventory-api"
@@ -20,7 +21,6 @@ repositories=("inventory_refresh"
               "topological_inventory-orchestrator"
               "topological_inventory-persister"
               "topological_inventory-sync"
-              "topological_inventory-ui"
              )
 
 # When script "start.sh" is ran without parameters, these services are started.
@@ -32,6 +32,4 @@ start_by_default=("kafka"
                   "sources-api"
                   "sources-sync"
 #                  "insights-proxy"
-#                  "insights-chrome"
-#                  "ui"
                  )

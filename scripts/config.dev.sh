@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# You can redefine services started by default
+# in your config.sh
+# See start_by_default()
 source repositories.sh
 
 # Your Github account name used for cloning
@@ -98,8 +101,10 @@ export ANSIBLE_TOWER_PASSWORD=""
 
 # UI
 export INSIGHTS_PROXY_DIR="$root_dir/insights-proxy"
+export SPANDX_CONFIG_PATH="$root_dir/scripts/insights-proxy/spandx.config.js"
+
 export INSIGHTS_CHROME_DIR="$root_dir/insights-chrome"
-export TOPOLOGICAL_INVENTORY_UI_DIR="$root_dir/topological_inventory-ui"
+export SOURCES_UI_DIR="$root_dir/sources-ui"
 
 # Orchestrator
 export ORCHESTRATOR_DIR="$root_dir/topological_inventory-orchestrator"
