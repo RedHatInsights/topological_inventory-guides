@@ -19,6 +19,14 @@ function stop_kafka {
     tmux kill-window -t TpInv:kafka &> /dev/null
 }
 
+function stop_insights_proxy_docker_container {
+    local container_id=`docker container ls | grep "insightsproxy" | awk '{print $1}'`
+    if [[ ! -z ${container_id} ]]; then
+        echo "Stopping docker container \"insightsproxy\" (${container_id})"
+        docker stop ${container_id}
+    fi
+}
+
 function start_svc_in_tmux {
     local svc=$1
 
@@ -34,6 +42,9 @@ function stop_svc_in_tmux {
 
     if [[ ${svc} == "kafka" ]]; then
         stop_kafka
+    elif [[ ${svc} == "insights-proxy" ]]; then
+        tmux kill-window -t TpInv:${svc} &> /dev/null
+        stop_insights_proxy_docker_container
     else
         tmux kill-window -t TpInv:${svc} &> /dev/null
     fi

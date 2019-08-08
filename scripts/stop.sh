@@ -6,15 +6,13 @@ source ./init-common.sh
 
 requested_svc=$1
 
+
+
 if [[ -z ${requested_svc} ]]; then
     ./services/kafka.sh stop
     tmux kill-session -t TpInv
 
-    container_id=`docker container ls | grep "insights-proxy" | awk '{print $1}'`
-    if [[ ! -z ${container_id} ]]; then
-        echo "Stopping docker container \"insights-proxy\""
-        docker stop ${container_id}
-    fi
+    stop_insights_proxy_docker_container
 else
     stop_svc_in_tmux ${requested_svc}
 fi
