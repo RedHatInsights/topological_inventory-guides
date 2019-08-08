@@ -40,14 +40,20 @@ https://www.npmjs.com/get-npm
 
 **Config file**
 
-Config file contains all information for installation and running services.
-- Copy [config.dev.sh](scripts/config.dev.sh) into `scripts/config.sh` 
-- Fill your github name (_MY_GITHUB_NAME_)
-- Fill your github token (_MY_GITHUB_TOKEN_)
-- Fill your root directory for repositories (_root_dir_)
-- Fill URL to kafka archive (see chapter above) (_KAFKA_INSTALL_URL_)
-- Fill RVM ruby version you want to use (if using rvm) (_RVM_RUBY_VERSION_TP_INV_)
-- Fill RVM gemset name you want to use (if using rvm) (_RVM_GEMSET_NAME_TP_INV_)
+Config file contains all information for installation and running services.  
+Default values are filled in [config.default.sh](scripts/config.default.sh).
+- Create *config.sh* with this content:
+  - ```
+    #!/bin/bash
+    source "config.default.sh"
+    ```
+- Redefine values in `config.sh`:    
+  - Your github name (_MY_GITHUB_NAME_)
+  - Your github token (_MY_GITHUB_TOKEN_)
+  - Your root directory for repositories (_root_dir_)
+  - URL to kafka archive (see chapter above) (_KAFKA_INSTALL_URL_)
+  - RVM ruby version you want to use (if using rvm) (_RVM_RUBY_VERSION_TP_INV_)
+  - RVM gemset name you want to use (if using rvm) (_RVM_GEMSET_NAME_TP_INV_)
 
 ## Installation
 

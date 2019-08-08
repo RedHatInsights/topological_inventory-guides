@@ -58,9 +58,11 @@ export TOPOLOGICAL_INVENTORY_INGRESS_API_SERVICE_PORT="9292"
 # Topological API service
 export TOPOLOGICAL_API_DIR="$root_dir/topological_inventory-api"
 export TOPOLOGICAL_INVENTORY_API_SERVICE_HOST="http://localhost" # used by openshift operations
-export TOPOLOGICAL_INVENTORY_API_SERVICE_PORT=3000
-# Comment if you want to enable tenancy
-export BYPASS_TENANCY=1
+export TOPOLOGICAL_INVENTORY_API_SERVICE_PORT=3001
+export TOPOLOGICAL_INVENTORY_URL="http://localhost:3001"
+
+# Uncomment if you want to enable tenancy
+# export BYPASS_TENANCY=1
 
 # Sources API service
 export SOURCES_API_DIR="$root_dir/sources-api"
