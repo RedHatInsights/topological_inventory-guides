@@ -45,6 +45,7 @@ Default values are filled in [config.default.sh](scripts/config.default.sh).
 - Create *config.sh* with this content:
   - ```
     #!/bin/bash
+    root_dir="<your topological-inventory root dir>"
     source "config.default.sh"
     ```
 - Redefine values in `config.sh`:    
@@ -57,6 +58,8 @@ Default values are filled in [config.default.sh](scripts/config.default.sh).
 
 ## Installation
 
+- Create some root directory
+- Clone these guides into it
 - Switch to `scripts` directory 
 - Run [install.sh](scripts/install.sh)
 - Check your `config/database.yml` files if you want custom db name for **topological_inventory** service in repositories (all must point to the same db):

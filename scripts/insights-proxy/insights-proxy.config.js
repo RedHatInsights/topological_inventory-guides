@@ -6,12 +6,17 @@ const localhost = (process.env.PLATFORM === 'linux') ? 'localhost' : 'host.docke
 
 module.exports = {
     routes: {
+        //
+        // APIs
+        //
         '/api/sources/v1.0': {host: `http://${localhost}:3002`},
         '/api/topological-inventory/v1.0': {host: `http://${localhost}:3001`},
         // '/api/catalog/v1.0': {host: `http://${localhost}:3003`},
         // '/api/approval/v1.0': {host: `http://${localhost}:3004`},
 
-        '/beta/hybrid/settings/sources': {host: `http://${localhost}:8002`},
-
+        //
+        // Sources UI
+        //
+        // '/beta/hybrid/settings/sources': {host: `http://${localhost}:8002`},
     }
 };
