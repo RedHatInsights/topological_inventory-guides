@@ -101,7 +101,6 @@ export AMAZON_SOURCE_UID="592ba27a-2b89-11e9-b210-d663bd873d93" # random value f
 export AMAZON_ACCESS_KEY_ID=""
 export AMAZON_SECRET_ACCESS_KEY=""
 
-
 # Ansible Tower
 export ANSIBLE_TOWER_DIR="$root_dir/topological_inventory-ansible_tower"
 export ANSIBLE_TOWER_SOURCE_UID="23d05717-ad56-4eec-8c34-cc0322e2c411"  # random value for dev
@@ -109,6 +108,12 @@ export ANSIBLE_TOWER_SCHEME="https"
 export ANSIBLE_TOWER_HOST=""
 export ANSIBLE_TOWER_USER=""
 export ANSIBLE_TOWER_PASSWORD=""
+
+# Azure
+export AZURE_DIR="$root_dir/topological_inventory-azure"
+export AZURE_CLIENT_ID=""
+export AZURE_CLIENT_SECRET=""
+export AZURE_TENANT_ID=""
 
 # UI
 export INSIGHTS_PROXY_DIR="$root_dir/insights-proxy"
