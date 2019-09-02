@@ -35,4 +35,7 @@ rails r "Source.find_or_create_by(:name => 'Amazon Source', :tenant => Tenant.wh
 echo "Setting AnsibleTower Source to: $ANSIBLE_TOWER_SOURCE_UID"
 rails r "Source.find_or_create_by(:name => 'Ansible Tower Source', :tenant => Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first, :uid => '$ANSIBLE_TOWER_SOURCE_UID', :source_type => SourceType.find_by(:name => 'ansible-tower'))"
 
+echo "Setting Azure Source to: $AZURE_SOURCE_UID"
+rails r "source = Source.find_or_create_by(:name => 'Azure Source', :tenant => Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first, :uid =>'$AZURE_SOURCE_UID', :source_type => SourceType.find_by(:name => 'azure'))"
+
 echo "-- Done! You can find these UID values in config.sh --"

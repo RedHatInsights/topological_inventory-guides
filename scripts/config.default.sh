@@ -111,9 +111,10 @@ export ANSIBLE_TOWER_PASSWORD=""
 
 # Azure
 export AZURE_DIR="$root_dir/topological_inventory-azure"
+export AZURE_SOURCE_UID="4af9131d-d200-4516-950e-83f9926462a9"
 export AZURE_CLIENT_ID=""
 export AZURE_CLIENT_SECRET=""
-export AZURE_TENANT_ID=""
+export AZURE_SUBSCRIPTION_ID=""
 
 # UI
 export INSIGHTS_PROXY_DIR="$root_dir/insights-proxy"
