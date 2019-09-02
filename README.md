@@ -1,6 +1,8 @@
 # Topological Inventory (tp-inv) guides
 
-These guides describes how to install and run Topological Inventory 
+These guides describes how to install and run Topological Inventory.
+
+**Update**: Now added Catalog and Approval services.  
 
 ## Prerequisities
 
