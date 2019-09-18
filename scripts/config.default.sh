@@ -52,6 +52,9 @@ export METRICS_PORT=0
 export RVM_RUBY_VERSION_TP_INV="2.5.3"
 export RVM_GEMSET_NAME_TP_INV="tp-inv"
 
+# Uncomment if you want to disable tenancy
+# export BYPASS_TENANCY=1
+
 # Topological Inventory Persister
 export PERSISTER_DIR="$root_dir/topological_inventory-persister"
 
@@ -69,15 +72,16 @@ export TOPOLOGICAL_API_DIR="$root_dir/topological_inventory-api"
 export TOPOLOGICAL_INVENTORY_API_SERVICE_HOST="http://localhost" # used by openshift operations
 export TOPOLOGICAL_INVENTORY_API_SERVICE_PORT=3001
 export TOPOLOGICAL_INVENTORY_URL="http://localhost:3001"
-
-# Uncomment if you want to enable tenancy
-# export BYPASS_TENANCY=1
+# - Used by api scripts
+export TOPOLOGICAL_INVENTORY_API_BASE_PATH="api/topological-inventory/v1.0"
 
 # Sources API service
 export SOURCES_API_DIR="$root_dir/sources-api"
 export SOURCES_SCHEME="http"
 export SOURCES_HOST="localhost"
 export SOURCES_PORT="3002"
+# - Used by api scripts
+export SOURCES_API_BASE_PATH="api/sources/v1.0"
 
 # Mock Source
 export MOCK_SOURCE_DIR="$root_dir/topological_inventory-mock_source"
