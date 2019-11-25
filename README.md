@@ -133,3 +133,12 @@ Following scripts helps with commonly used mass operations.
 
 - [bundle.sh](scripts/bundle.sh): Bundles all repositories which contains Gemfile
 - [update.sh](scripts/update.sh): Bundles repositories with Gemfile, runs npm build on UI, insights-chrome and insights-proxy repositories and runs migrations on `topological_inventory-core` and `sources-api`
+
+## Calling APIs
+
+[API directory](scripts/api) contains scripts for querying Sources API and Tp-Inv API.  
+They can be used directly from command line like:
+- `cd scripts`
+- `api/sources/get sources`
+- response can be parsed with *jq* utility: `api/sources/get sources | jq '.'`
+Or called from script with the same parameters, see [examples.sh](scripts/api/examples.sh)
