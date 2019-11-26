@@ -24,18 +24,41 @@ echo "Creating Mock Source Type"
 rails r "SourceType.find_or_create_by(:name => 'mock-source', :product_name => 'Mock', :vendor => 'Red Hat', :schema => {})"
 
 echo "Setting Mock Source to: $MOCK_SOURCE_UID"
-rails r "Source.find_or_create_by(:name => 'Mock Source', :tenant => Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first, :uid =>'$MOCK_SOURCE_UID', :source_type => SourceType.find_by(:name => 'mock-source'))"
+rails r "Source.find_or_create_by(:name => 'Mock Source', :tenant => Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first, :uid =>'$MOCK_SOURCE_UID', :source_type => SourceType.find_by(:name => 'mock-source'), :availability_status => 'available')"
 
+# Token(Password) has to be added manually!
 echo "Setting Openshift Source to: $OPENSHIFT_SOURCE_UID"
-rails r "Source.find_or_create_by(:name => 'OpenShift Source', :tenant => Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first, :uid =>'$OPENSHIFT_SOURCE_UID', :source_type => SourceType.find_by(:name => 'openshift'))"
+rails r "tenant = Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first
+src = Source.find_or_create_by(:name => 'OpenShift Source', :tenant => tenant, :uid =>'$OPENSHIFT_SOURCE_UID', :source_type => SourceType.find_by(:name => 'openshift'), :availability_status => 'available')
+endpoint = Endpoint.find_or_create_by(:source_id => src.id, :port => $OPENSHIFT_PORT, :default => true, :scheme => '$OPENSHIFT_SCHEME', :host => '$OPENSHIFT_HOST', :path => '/', :tenant => tenant)
+auth = Authentication.find_or_create_by(:resource_type => 'Endpoint', :resource_id => endpoint.id, :authtype => 'token', :password =>'xxx', :tenant => tenant)
+app_type = ApplicationType.where(:name => '/insights/platform/topological-inventory').first
+app = Application.find_or_create_by(:source => src, :tenant => tenant, :application_type => app_type, :availability_status => 'available')"
+
 
 echo "Setting Amazon Source to: $AMAZON_SOURCE_UID"
-rails r "Source.find_or_create_by(:name => 'Amazon Source', :tenant => Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first, :uid =>'$AMAZON_SOURCE_UID', :source_type => SourceType.find_by(:name => 'amazon'))"
+rails r "tenant = Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first
+src = Source.find_or_create_by(:name => 'Amazon Source', :tenant => tenant, :uid =>'$AMAZON_SOURCE_UID', :source_type => SourceType.find_by(:name => 'amazon'), :availability_status => 'available')
+endpoint = Endpoint.find_or_create_by(:source_id => src.id, :default => true, :path => '/', :tenant => tenant)
+auth = Authentication.find_or_create_by(:resource_type => 'Endpoint', :resource_id => endpoint.id, :authtype => 'access_key_secret_key', :username => '$AMAZON_ACCESS_KEY_ID', :password => '$AMAZON_SECRET_ACCESS_KEY', :tenant => tenant)
+app_type = ApplicationType.where(:name => '/insights/platform/topological-inventory').first
+app = Application.find_or_create_by(:source => src, :tenant => tenant, :application_type => app_type, :availability_status => 'available')"
 
 echo "Setting AnsibleTower Source to: $ANSIBLE_TOWER_SOURCE_UID"
-rails r "Source.find_or_create_by(:name => 'Ansible Tower Source', :tenant => Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first, :uid => '$ANSIBLE_TOWER_SOURCE_UID', :source_type => SourceType.find_by(:name => 'ansible-tower'))"
+rails r "tenant = Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first
+src = Source.find_or_create_by(:name => 'Ansible Tower Source', :tenant => tenant, :uid => '$ANSIBLE_TOWER_SOURCE_UID', :source_type => SourceType.find_by(:name => 'ansible-tower'), :availability_status => 'available')
+endpoint = Endpoint.find_or_create_by(:source_id => src.id, :role => 'ansible', :default => true, :scheme => '$ANSIBLE_TOWER_SCHEME', :host => '$ANSIBLE_TOWER_HOST', :path => '/', :tenant => tenant)
+auth = Authentication.find_or_create_by(:resource_type => 'Endpoint', :resource_id => endpoint.id, :authtype => 'username_password', :username => '$ANSIBLE_TOWER_USER', :password => '$ANSIBLE_TOWER_PASSWORD', :tenant => tenant)
+app_type = ApplicationType.where(:name => '/insights/platform/topological-inventory').first
+app = Application.find_or_create_by(:source => src, :tenant => tenant, :application_type => app_type, :availability_status => 'available')"
 
 echo "Setting Azure Source to: $AZURE_SOURCE_UID"
-rails r "source = Source.find_or_create_by(:name => 'Azure Source', :tenant => Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first, :uid =>'$AZURE_SOURCE_UID', :source_type => SourceType.find_by(:name => 'azure'))"
+rails r "tenant = Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first
+src = Source.find_or_create_by(:name => 'Azure Source', :tenant => tenant, :uid =>'$AZURE_SOURCE_UID', :source_type => SourceType.find_by(:name => 'azure'), :availability_status => 'available')
+endpoint = Endpoint.find_or_create_by(:source_id => src.id, :default => true, :path => '/', :tenant => tenant)
+auth = Authentication.find_or_create_by(:resource_type => 'Endpoint', :resource_id => endpoint.id, :authtype => 'tenant_id_client_id_client_secret', :username => '$AZURE_CLIENT_ID', :password => '$AZURE_CLIENT_SECRET', :extra => {\"azure\": {\"tenant_id\": \"$AZURE_SUBSCRIPTION_ID\"}}, :tenant => tenant)
+app_type = ApplicationType.where(:name => '/insights/platform/topological-inventory').first
+app = Application.find_or_create_by(:source => src, :tenant => tenant, :application_type => app_type, :availability_status => 'available')"
+
 
 echo "-- Done! You can find these UID values in config.sh --"
