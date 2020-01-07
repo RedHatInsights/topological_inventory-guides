@@ -5,5 +5,5 @@ source config.sh
 source init-common.sh
 
 cd $INGRESS_API_DIR
-bundle exec rackup
+env QUEUE_HOST=${QUEUE_HOST} QUEUE_PORT=${QUEUE_PORT} rails s -p 9292
 
