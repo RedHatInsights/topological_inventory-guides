@@ -55,6 +55,9 @@ export RVM_GEMSET_NAME_TP_INV="tp-inv"
 # Uncomment if you want to disable tenancy
 # export BYPASS_TENANCY=1
 
+# Sources API can be accessed by anyone (default access: org-admin)
+export BYPASS_RBAC=true
+
 # Topological Inventory Persister
 export PERSISTER_DIR="$root_dir/topological_inventory-persister"
 
@@ -122,7 +125,7 @@ export AZURE_SUBSCRIPTION_ID=""
 
 # UI
 export INSIGHTS_PROXY_DIR="$root_dir/insights-proxy"
-export SPANDX_CONFIG_PATH="$root_dir/scripts/insights-proxy/spandx.config.js"
+export SPANDX_CONFIG_PATH="$root_dir/scripts/insights-proxy/insights-proxy.config.js"
 
 export INSIGHTS_CHROME_DIR="$root_dir/insights-chrome"
 export SOURCES_UI_DIR="$root_dir/sources-ui"
