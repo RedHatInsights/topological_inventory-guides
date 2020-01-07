@@ -21,7 +21,7 @@ rails r "Tenant.find_or_create_by(:name => 'Tp-Inv Sources Sync service', :exter
 rails r "Tenant.find_or_create_by(:name => 'Orchestrator', :external_tenant => 'system_orchestrator')"
 
 echo "Creating Mock Source Type"
-rails r "SourceType.find_or_create_by(:name => 'mock-source', :product_name => 'Mock', :vendor => 'Red Hat', :schema => {})"
+rails r "SourceType.find_or_create_by(:name => 'mock-source', :product_name => 'Mock', :vendor => 'Red Hat')"
 
 echo "Setting Mock Source to: $MOCK_SOURCE_UID"
 rails r "Source.find_or_create_by(:name => 'Mock Source', :tenant => Tenant.where(:external_tenant => '$MY_GITHUB_NAME').first, :uid =>'$MOCK_SOURCE_UID', :source_type => SourceType.find_by(:name => 'mock-source'), :availability_status => 'available')"
