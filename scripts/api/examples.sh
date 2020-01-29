@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
 source "api/common.sh"
-
 #
 # LIST tenants ------------------
 #
-# sources_api_get "tenants" "internal/v1.0"
+# topological_api_get "tenants?filter[id]=2" "internal/v1.0"
 # echo ""
 # topological_api_get "tenants" "internal/v0.0"
 # echo ""
@@ -50,7 +49,11 @@ source "api/common.sh"
 
 # CATALOG ORDERING --------------
 # Job template
-# topological_api_post "service_plans/2/order" "{\"service_parameters\":{\"username\":\"mslemr\",\"quest\":\"Test Topology\",\"airspeed\":50},\"provider_control_parameters\":{}}"
+# topological_api_post "service_offerings/2/order" "{\"service_parameters\":{\"username\":\"mslemr\",\"quest\":\"Test Topology\",\"airspeed\":50},\"provider_control_parameters\":{}}"
 
 # Workflow Job template
-# topological_api_post "service_plans/5/order" "{\"service_parameters\":{\"dev_null\":\"Yes\"},\"provider_control_parameters\":{}}"
+# topological_api_post "service_offerings/5/order" "{\"service_parameters\":{\"dev_null\":\"Yes\"},\"provider_control_parameters\":{}}"
+
+#topological_api_post "service_offerings/40/order" "{\"provider_control_parameters\":{}}"
+
+#topological_api_post "service_offerings/569/applied_inventories" "{}"

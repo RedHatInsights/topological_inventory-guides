@@ -10,7 +10,7 @@ module.exports = {
         // APIs
         //
         '/api/sources/v1.0': {host: `http://${localhost}:3002`},
-        '/api/topological-inventory/v1.0': {host: `http://${localhost}:3001`},
+        '/api/topological-inventory/v2.0': {host: `http://${localhost}:3001`},
         // '/api/catalog/v1.0': {host: `http://${localhost}:3003`},
         // '/api/approval/v1.0': {host: `http://${localhost}:3004`},
 

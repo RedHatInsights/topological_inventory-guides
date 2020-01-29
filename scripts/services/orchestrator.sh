@@ -13,6 +13,6 @@ export KUBERNETES_SERVICE_HOST=192.168.42.45
 export KUBERNETES_SERVICE_PORT=8443
 export MY_NAMESPACE=tp-inv
 
-./bin/topological_inventory-orchestrator --collector-image-tag latest --config=example --metrics-port ${METRICS_PORT} --sources-api ${SOURCES_SCHEME}://${SOURCES_HOST}:${SOURCES_PORT}/api/sources/v1.0 --topology-api ${TOPOLOGICAL_INVENTORY_API_SERVICE_HOST}:${TOPOLOGICAL_INVENTORY_API_SERVICE_PORT}/api/topological-inventory/v1.0
+./bin/topological_inventory-orchestrator --collector-image-tag latest --config=default --metrics-port ${METRICS_PORT} --sources-api ${SOURCES_SCHEME}://${SOURCES_HOST}:${SOURCES_PORT}/api/sources/v1.0 --topology-api ${TOPOLOGICAL_INVENTORY_API_SERVICE_HOST}:${TOPOLOGICAL_INVENTORY_API_SERVICE_PORT}/api/topological-inventory/v1.0
 
 

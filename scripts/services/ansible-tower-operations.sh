@@ -1,6 +1,6 @@
 #!/bin/bash --login
-# Usage ./openshift-operations.sh
-echo "Starting Openshift Operations worker"
+# Usage ./ansible-tower-operations.sh
+echo "Starting Ansible Tower Operations worker"
 source config.sh
 source init-common.sh
 

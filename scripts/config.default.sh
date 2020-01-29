@@ -55,8 +55,8 @@ export RVM_GEMSET_NAME_TP_INV="tp-inv"
 # Uncomment if you want to disable tenancy
 # export BYPASS_TENANCY=1
 
-# Sources API can be accessed by anyone (default access: org-admin)
-export BYPASS_RBAC=true
+# Uncommenting causes Sources API RBAC disabled (default access: org-admin)
+# export BYPASS_RBAC=true
 
 # Topological Inventory Persister
 export PERSISTER_DIR="$root_dir/topological_inventory-persister"
@@ -76,7 +76,7 @@ export TOPOLOGICAL_INVENTORY_API_SERVICE_HOST="http://localhost" # used by opens
 export TOPOLOGICAL_INVENTORY_API_SERVICE_PORT=3001
 export TOPOLOGICAL_INVENTORY_URL="http://localhost:3001"
 # - Used by api scripts
-export TOPOLOGICAL_INVENTORY_API_BASE_PATH="api/topological-inventory/v1.0"
+export TOPOLOGICAL_INVENTORY_API_BASE_PATH="api/topological-inventory/v2.0"
 
 # Sources API service
 export SOURCES_API_DIR="$root_dir/sources-api"
@@ -96,32 +96,32 @@ export MOCK_SOURCE_DATA="small"
 export OPENSHIFT_DIR="$root_dir/topological_inventory-openshift"
 export OPENSHIFT_SOURCE_UID="31b5338b-685d-4056-ba39-d00b4d7f19cc"  # random value for dev
 export OPENSHIFT_SCHEME="https"
-export OPENSHIFT_HOST=""
-export OPENSHIFT_PORT=""
-export OPENSHIFT_USER=""
-export OPENSHIFT_PASSWORD=""
+export OPENSHIFT_HOST="openshift.example.com"
+export OPENSHIFT_PORT="80"
+export OPENSHIFT_USER="XXX"
+export OPENSHIFT_PASSWORD="XXX"
 export OPENSHIFT_API_PATH="/api" # kubernetes API
 
 # Amazon
 export AMAZON_DIR="$root_dir/topological_inventory-amazon"
 export AMAZON_SOURCE_UID="592ba27a-2b89-11e9-b210-d663bd873d93" # random value for dev
-export AMAZON_ACCESS_KEY_ID=""
-export AMAZON_SECRET_ACCESS_KEY=""
+export AMAZON_ACCESS_KEY_ID="XXX"
+export AMAZON_SECRET_ACCESS_KEY="XXX"
 
 # Ansible Tower
 export ANSIBLE_TOWER_DIR="$root_dir/topological_inventory-ansible_tower"
 export ANSIBLE_TOWER_SOURCE_UID="23d05717-ad56-4eec-8c34-cc0322e2c411"  # random value for dev
 export ANSIBLE_TOWER_SCHEME="https"
-export ANSIBLE_TOWER_HOST=""
-export ANSIBLE_TOWER_USER=""
-export ANSIBLE_TOWER_PASSWORD=""
+export ANSIBLE_TOWER_HOST="tower.example.com"
+export ANSIBLE_TOWER_USER="XXX"
+export ANSIBLE_TOWER_PASSWORD="XXX"
 
 # Azure
 export AZURE_DIR="$root_dir/topological_inventory-azure"
 export AZURE_SOURCE_UID="4af9131d-d200-4516-950e-83f9926462a9"
-export AZURE_CLIENT_ID=""
-export AZURE_CLIENT_SECRET=""
-export AZURE_SUBSCRIPTION_ID=""
+export AZURE_CLIENT_ID="XXX"
+export AZURE_CLIENT_SECRET="XXX"
+export AZURE_SUBSCRIPTION_ID="XXX"
 
 # UI
 export INSIGHTS_PROXY_DIR="$root_dir/insights-proxy"

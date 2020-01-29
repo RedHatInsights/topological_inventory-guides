@@ -2,7 +2,7 @@
 
 source "config.sh"
 
-plain_rh_identity="{\"identity\":{\"account_number\":\"${MY_GITHUB_NAME}\"}, \"internal\": {\"org_id\": \"54321\"}}"
+plain_rh_identity="{\"identity\":{\"account_number\":\"${MY_GITHUB_NAME}\",\"user\": {\"is_org_admin\":true}}, \"internal\": {\"org_id\": \"54321\"}}"
 
 # base64 can split output to more lines, forbid it with one of following
 # depends on base64 version:
