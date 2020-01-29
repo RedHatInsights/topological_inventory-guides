@@ -26,6 +26,11 @@ export MY_GITHUB_NAME="" # https://github.com/<MY_GITHUB_NAME>/<repository name>
 # https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line
 export MY_GITHUB_TOKEN=""
 
+# Account number is used to http auth header.
+# It equals Tenant.external_tenant db value
+# If you log in to CI/QA/Prod server, you can see account number in dropbox under user name
+# Set to github_name for backwards compatibility
+export ACCOUNT_NUMBER=${MY_GITHUB_NAME}
 # Variable for HTTP request header x-rh-identity.
 # Requests authenticated against Tenant.external_tenant
 export X_RH_IDENTITY=$(echo "{\"identity\":{\"account_number\":\"${GITHUB_NAME}\"}}" | base64)
