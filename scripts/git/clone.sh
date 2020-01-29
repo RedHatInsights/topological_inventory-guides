@@ -18,11 +18,7 @@ cd ${root_dir}
 
 for name in ${repositories[@]} 
 do
-    if [[ ${name} == "insights-proxy" || ${name} == "insights-chrome" ]]; then
-        upstream_org="RedHatInsights"
-    else
-        upstream_org="ManageIQ"
-    fi
+  upstream_org="RedHatInsights"
 
 	echo "----------------------------------------------------------------------"
 	#
