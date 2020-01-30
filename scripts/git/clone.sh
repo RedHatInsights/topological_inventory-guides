@@ -18,7 +18,11 @@ cd ${root_dir}
 
 for name in ${repositories[@]} 
 do
-  upstream_org="RedHatInsights"
+    if [[ ${name} == "inventory_refresh" ]]; then
+        upstream_org="ManageIQ"
+    else
+        upstream_org="RedHatInsights"
+    fi
 
 	echo "----------------------------------------------------------------------"
 	#

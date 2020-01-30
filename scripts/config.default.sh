@@ -29,8 +29,7 @@ export MY_GITHUB_TOKEN=""
 # Account number is used to http auth header.
 # It equals Tenant.external_tenant db value
 # If you log in to CI/QA/Prod server, you can see account number in dropbox under user name
-# Set to github_name for backwards compatibility
-export ACCOUNT_NUMBER=${MY_GITHUB_NAME}
+export ACCOUNT_NUMBER=""
 # Variable for HTTP request header x-rh-identity.
 # Requests authenticated against Tenant.external_tenant
 export X_RH_IDENTITY=$(echo "{\"identity\":{\"account_number\":\"${GITHUB_NAME}\"}}" | base64)
@@ -43,7 +42,7 @@ fi
 
 # Kafka queue
 # Get latest release URL at https://kafka.apache.org/quickstart
-export KAFKA_INSTALL_URL="http://mirror.dkm.cz/apache/kafka/2.2.0/kafka_2.12-2.2.0.tgz"
+export KAFKA_INSTALL_URL="http://mirror.dkm.cz/apache/kafka/2.4.0/kafka_2.12-2.4.0.tgz"
 # Directory below is created automatically by script install.sh
 export KAFKA_DIR="$root_dir/kafka"
 export QUEUE_HOST="localhost" # used by openshift-operations
