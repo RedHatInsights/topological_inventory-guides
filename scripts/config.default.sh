@@ -132,3 +132,6 @@ export SOURCES_UI_DIR="$root_dir/sources-ui"
 
 # Orchestrator
 export ORCHESTRATOR_DIR="$root_dir/topological_inventory-orchestrator"
+
+# Satellite
+export SATELLITE_DIR="$root_dir/topological_inventory-satellite"
