@@ -21,6 +21,7 @@ repositories=("inventory_refresh"
               "topological_inventory-openshift"
               "topological_inventory-orchestrator"
               "topological_inventory-persister"
+              "topological_inventory-satellite"
               "topological_inventory-sync"
              )
 
