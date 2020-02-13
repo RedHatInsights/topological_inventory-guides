@@ -44,7 +44,7 @@ source "api/common.sh"
 
 # GRAPHQL -----------------------
 
-# sources_api_post "graphql" "{\"query\": \"{ sources { id, created_at, source_type_id, name, tenant, uid, updated_at applications { application_type_id, id }, endpoints { id, scheme, host, port, path } }}\"}"
+ sources_api_post "graphql" "{\"query\": \"{ sources { id, created_at, source_type_id, name, tenant, uid, updated_at applications { application_type_id, id }, endpoints { id, scheme, host, port, path } }}\"}"
 
 
 # CATALOG ORDERING --------------

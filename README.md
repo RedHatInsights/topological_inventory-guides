@@ -53,6 +53,7 @@ Default values are filled in [config.default.sh](scripts/config.default.sh).
 - Redefine values in `config.sh`:    
   - Your github name (_MY_GITHUB_NAME_)
   - Your github token (_MY_GITHUB_TOKEN_)
+  - Your account number (_ACCOUNT_NUMBER_) (to account number you're using to log to CI server)
   - Your root directory for repositories (_root_dir_)
   - URL to kafka archive (see chapter above) (_KAFKA_INSTALL_URL_)
   - RVM ruby version you want to use (if using rvm) (_RVM_RUBY_VERSION_TP_INV_)
