@@ -120,10 +120,6 @@ echo "Patching /etc/hosts to connect localhost with CI/QA servers, please provid
 sudo bash scripts/patch-etc-hosts.sh
 bash scripts/update.sh
 
-cd "$root_dir/insights-chrome"
-npm install
-npm run build
-
 cd "$root_dir/sources-ui"
 npm install
 

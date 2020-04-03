@@ -66,7 +66,7 @@ export RVM_GEMSET_NAME_TP_INV="tp-inv"
 export PERSISTER_DIR="$root_dir/topological_inventory-persister"
 
 # Topological Inventory Sources Sync
-export TOPOLOGICAL_INVENTORY_SOURCES_SYNC_DIR="$root_dir/topological_inventory-sync"
+export TOPOLOGICAL_INVENTORY_SYNC_DIR="$root_dir/topological_inventory-sync"
 
 # Ingress API service (Persister <-> Collectors)
 export INGRESS_API_DIR="$root_dir/topological_inventory-ingress_api"
@@ -89,6 +89,9 @@ export SOURCES_HOST="localhost"
 export SOURCES_PORT="3002"
 # - Used by api scripts
 export SOURCES_API_BASE_PATH="api/sources/v1.0"
+
+# Sources monitor (availability check)
+export SOURCES_MONITOR_DIR="$root_dir/sources-monitor"
 
 # Mock Source
 export MOCK_SOURCE_DIR="$root_dir/topological_inventory-mock_source"
@@ -131,7 +134,6 @@ export AZURE_SUBSCRIPTION_ID="XXX"
 export INSIGHTS_PROXY_DIR="$root_dir/insights-proxy"
 export SPANDX_CONFIG_PATH="$root_dir/scripts/insights-proxy/insights-proxy.config.js"
 
-export INSIGHTS_CHROME_DIR="$root_dir/insights-chrome"
 export SOURCES_UI_DIR="$root_dir/sources-ui"
 
 # Orchestrator
@@ -139,3 +141,6 @@ export ORCHESTRATOR_DIR="$root_dir/topological_inventory-orchestrator"
 
 # Satellite
 export SATELLITE_DIR="$root_dir/topological_inventory-satellite"
+export SATELLITE_SOURCE_UID="f3224fd3-bdc2-4c48-b8a7-3a35111d5808"
+export SATELLITE_SCHEME="https"
+export SATELLITE_HOST="satellite.example.com"
