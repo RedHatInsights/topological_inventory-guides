@@ -60,5 +60,10 @@ auth = Authentication.find_or_create_by(:resource_type => 'Endpoint', :resource_
 app_type = ApplicationType.where(:name => '/insights/platform/topological-inventory').first
 app = Application.find_or_create_by(:source => src, :tenant => tenant, :application_type => app_type, :availability_status => 'available')"
 
+echo "Setting Satellite Source to: $SATELLITE_SOURCE_UID"
+rails r "tenant = Tenant.where(:external_tenant => '$ACCOUNT_NUMBER').first
+src = Source.find_or_create_by(:name => 'Satellite Source', :tenant => tenant, :uid =>'$SATELLITE_SOURCE_UID', :source_type => SourceType.find_by(:name => 'satellite'), :availability_status => 'available')
+endpoint = Endpoint.find_or_create_by(:source_id => src.id, :default => true, :scheme => '$SATELLITE_SCHEME', :host => '$SATELLITE_HOST', :path => '/', :tenant => tenant)"
+
 
 echo "-- Done! You can find these UID values in config.sh --"

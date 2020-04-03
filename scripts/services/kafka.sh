@@ -4,6 +4,9 @@ source config.sh
 
 cd $KAFKA_DIR
 
+# Listening on IPV4, but ruby-kafka doesn't support it (keeping disabled)
+#export KAFKA_OPTS="-Djava.net.preferIPv4Stack=True"
+
 operation=$1
 if [ "$operation" = "start" ]; then
 	bin/zookeeper-server-start.sh config/zookeeper.properties &

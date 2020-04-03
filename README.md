@@ -133,7 +133,7 @@ Following scripts helps with commonly used mass operations.
 ### Other
 
 - [bundle.sh](scripts/bundle.sh): Bundles all repositories which contains Gemfile
-- [update.sh](scripts/update.sh): Bundles repositories with Gemfile, runs npm build on UI, insights-chrome and insights-proxy repositories and runs migrations on `topological_inventory-core` and `sources-api`
+- [update.sh](scripts/update.sh): Bundles repositories with Gemfile, runs npm build on UI, insights-proxy repositories and runs migrations on `topological_inventory-core` and `sources-api`
 
 ## Calling APIs
 

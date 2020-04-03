@@ -4,5 +4,5 @@ echo "Starting Topological Inventory Sources Sync"
 source config.sh
 source init-common.sh
 
-cd ${TOPOLOGICAL_INVENTORY_SOURCES_SYNC_DIR}
+cd ${TOPOLOGICAL_INVENTORY_SYNC_DIR}
 bin/topological-inventory-sources-sync

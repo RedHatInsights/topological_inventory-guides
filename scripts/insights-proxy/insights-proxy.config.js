@@ -9,14 +9,14 @@ module.exports = {
         //
         // APIs
         //
-        '/api/sources/v1.0': {host: `http://${localhost}:3002`},
-        '/api/topological-inventory/v2.0': {host: `http://${localhost}:3001`},
-        // '/api/catalog/v1.0': {host: `http://${localhost}:3003`},
-        // '/api/approval/v1.0': {host: `http://${localhost}:3004`},
+        '/api/sources': {host: `http://${localhost}:3002`},
+        '/api/topological-inventory': {host: `http://${localhost}:3001`},
+        // '/api/catalog': {host: `http://${localhost}:3003`},
+        // '/api/approval': {host: `http://${localhost}:3004`},
 
         //
         // Sources UI
         //
-        // '/beta/hybrid/settings/sources': {host: `http://${localhost}:8002`},
+        // '/beta/settings/sources': {host: `http://${localhost}:8002`},
     }
 };

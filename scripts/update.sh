@@ -23,9 +23,6 @@ do
 	elif [[ ${name} == "insights-proxy" ]]; then
 		npm install
 		scripts/update.sh
-	elif [[ ${name} == "insights-chrome" ]]; then
-		npm install
-		npm run build
 	elif [[ ${name} == "topological_inventory-ui" ]]; then
 		npm install
 	else						
