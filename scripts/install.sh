@@ -1,8 +1,9 @@
 #!/bin/bash --login
 #
-set -e
 source config.sh
 source init-common.sh
+
+set -e
 
 cwd=$(pwd)
 
@@ -34,7 +35,7 @@ echo "Making these scripts executable, creating symlink..."
 chmod 744 ./*.sh
 chmod 744 ./services/*.sh
 
-ln -s ${cwd} ${root_dir}/scripts
+[ -L ${root_dir}/scripts ] || ln -s ${cwd} ${root_dir}/scripts
 
 #
 # 4) clone forked/manageiq repos (checks for forks automatically)

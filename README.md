@@ -13,6 +13,9 @@ https://rvm.io/rvm/install
 If you're not using rvm, just remove content of [init-common.sh](scripts/init-common.sh) in case of problems.
 If you're using rvm, create gemset for this project.
 
+NOTE: On some systems, the use of rvm can cause the [install.sh](scripts/install.sh) script to terminate unexpectedly.
+The solution, is to disable the specific feature of rvm that is the cause of the problem. To accomplish this, simply add the line: `export rvm_project_rvmrc=0` to your `$HOME/.rvmrc` file. For this to work, you must have current versions of the install scripts.
+
 **TMUX**
 
 Terminal multiplexer is required for automatized starting/restarting/stopping services in one session.
@@ -47,17 +50,25 @@ Default values are filled in [config.default.sh](scripts/config.default.sh).
 - Create *config.sh* with this content:
   - ```
     #!/bin/bash
+    # Define required values.
     root_dir="<your topological-inventory root dir>"
+    MY_GITHUB_NAME="<your github name>"
+    MY_GITHUB_TOKEN="<your github token>"
+    ACCOUNT_NUMBER="<your account number>"
+    # Define optional values, as needed.
+    RVM_RUBY_VERSION_TP_INV="<your ruby version>"
     source "config.default.sh"
     ```
-- Redefine values in `config.sh`:    
-  - Your github name (_MY_GITHUB_NAME_)
-  - Your github token (_MY_GITHUB_TOKEN_)
-  - Your account number (_ACCOUNT_NUMBER_) (to account number you're using to log to CI server)
-  - Your root directory for repositories (_root_dir_)
-  - URL to kafka archive (see chapter above) (_KAFKA_INSTALL_URL_)
-  - RVM ruby version you want to use (if using rvm) (_RVM_RUBY_VERSION_TP_INV_)
-  - RVM gemset name you want to use (if using rvm) (_RVM_GEMSET_NAME_TP_INV_)
+- Redefine values in `config.sh`:  
+  - Required:  
+    - Your github name (_MY_GITHUB_NAME_)
+    - Your github token (_MY_GITHUB_TOKEN_)
+    - Your account number (_ACCOUNT_NUMBER_) (to account number you're using to log to CI server)
+    - Your root directory for repositories (_root_dir_)
+  - Optional
+    - URL to kafka archive (see chapter above) (_KAFKA_INSTALL_URL_)
+    - RVM ruby version you want to use (if using rvm, in `rvm use` format) (_RVM_RUBY_VERSION_TP_INV_)
+    - RVM gemset name you want to use (if using rvm, in `rvm gemset use` format) (_RVM_GEMSET_NAME_TP_INV_)
 
 ## Installation
 
@@ -72,9 +83,10 @@ Default values are filled in [config.default.sh](scripts/config.default.sh).
   - topological_inventory-sync
 - Check your `config/database.yml` if you want custom db name for **sources** service
   - sources-api
-- Run [init-db.sh](scripts/init-db.sh)
-  - If your db exists, you can run only [reset-db.sh](scripts/reset-db.sh) (existing data will be lost!)
-  - Or [migrate-dbs.sh](scripts/migrate-dbs.sh) for migrations only
+- Run [db/init.sh](scripts/db/init.sh)
+  - For developers, before running these commands, copy `v2_key.dev` to `v2_key` in the `sources-api` directory under your `$root_dir`.
+  - If your db exists, you can run only [db/reset.sh](scripts/db/reset.sh) (existing data will be lost!)
+  - Or [db/migrate.sh](scripts/db/migrate.sh) for migrations only
 
 ## Starting services
 

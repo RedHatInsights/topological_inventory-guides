@@ -11,25 +11,37 @@
 # See start_by_default()
 source repositories.sh
 
-# Root directory for cloned repositories
-# created by install script install.sh
-if [[ -z ${root_dir} ]]; then
-    echo "Please specify \$root_dir variable in config.sh"
-    exit
+# Required values:
+#
+# root_dir - Root directory for cloned repositories
+#   created by install script install.sh
+#
+# MY_GITHUB_NAME - Your Github account name used for cloning
+#
+# MY_GITHUB_TOKEN - Get Github API token, needed for Github API requests.
+#   read only access is enough.
+#   https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line
+#
+# ACCOUNT_NUMBER - Account number is used to http auth header.
+#   It equals Tenant.external_tenant db value.
+#   If you log in to CI/QA/Prod server, you can see account number in dropbox under user name.
+REQUIRED_VARIABLES=(root_dir MY_GITHUB_NAME MY_GITHUB_TOKEN ACCOUNT_NUMBER)
+VAR_MISSING=false
+
+for REQUIRED_VAR in "${REQUIRED_VARIABLES[@]}"
+do
+	if [[ -z "`eval echo \\$$REQUIRED_VAR`" ]]
+	then
+    echo "Please specify $REQUIRED_VAR variable in config.sh"
+    VAR_MISSING=true
+	fi
+done
+
+if $VAR_MISSING
+then
+  exit 1
 fi
 
-# Your Github account name used for cloning
-export MY_GITHUB_NAME="" # https://github.com/<MY_GITHUB_NAME>/<repository name>
-
-# Get Github API token there
-# Needed for Github API requests, read only access is enough
-# https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line
-export MY_GITHUB_TOKEN=""
-
-# Account number is used to http auth header.
-# It equals Tenant.external_tenant db value
-# If you log in to CI/QA/Prod server, you can see account number in dropbox under user name
-export ACCOUNT_NUMBER=""
 # Variable for HTTP request header x-rh-identity.
 # Requests authenticated against Tenant.external_tenant
 export X_RH_IDENTITY=$(echo "{\"identity\":{\"account_number\":\"${GITHUB_NAME}\"}}" | base64)
@@ -42,19 +54,21 @@ fi
 
 # Kafka queue
 # Get latest release URL at https://kafka.apache.org/quickstart
-export KAFKA_INSTALL_URL="http://mirror.dkm.cz/apache/kafka/2.4.0/kafka_2.12-2.4.0.tgz"
+: ${KAFKA_INSTALL_URL:="http://mirror.dkm.cz/apache/kafka/2.4.0/kafka_2.12-2.4.0.tgz"}
 # Directory below is created automatically by script install.sh
-export KAFKA_DIR="$root_dir/kafka"
-export QUEUE_HOST="localhost" # used by openshift-operations
-export QUEUE_PORT="9092"
+: ${KAFKA_DIR:="$root_dir/kafka"}
+: ${QUEUE_HOST:="localhost"} # used by openshift-operations
+: ${QUEUE_PORT:="9092"}
+export KAFKA_INSTALL_URL KAFKA_DIR QUEUE_HOST QUEUE_PORT
 
 # Disable prometheus
 export METRICS_PORT=0
 
 # RVM ruby version & gemset
 # Optional, if you're using RVM
-export RVM_RUBY_VERSION_TP_INV="2.5.3"
-export RVM_GEMSET_NAME_TP_INV="tp-inv"
+: ${RVM_RUBY_VERSION_TP_INV:="2.5.3"}
+: ${RVM_GEMSET_NAME_TP_INV:="tp-inv"}
+export RVM_RUBY_VERSION_TP_INV RVM_GEMSET_NAME_TP_INV
 
 # Uncomment if you want to disable tenancy
 # export BYPASS_TENANCY=1
