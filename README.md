@@ -67,8 +67,8 @@ Default values are filled in [config.default.sh](scripts/config.default.sh).
     - Your root directory for repositories (_root_dir_)
   - Optional
     - URL to kafka archive (see chapter above) (_KAFKA_INSTALL_URL_)
-    - RVM ruby version you want to use (if using rvm) (_RVM_RUBY_VERSION_TP_INV_)
-    - RVM gemset name you want to use (if using rvm) (_RVM_GEMSET_NAME_TP_INV_)
+    - RVM ruby version you want to use (if using rvm, in `rvm use` format) (_RVM_RUBY_VERSION_TP_INV_)
+    - RVM gemset name you want to use (if using rvm, in `rvm gemset use` format) (_RVM_GEMSET_NAME_TP_INV_)
 
 ## Installation
 
