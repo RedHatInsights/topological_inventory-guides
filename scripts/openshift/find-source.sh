@@ -7,7 +7,7 @@
 
 source_id=$1
 
-maps=$(oc get configmaps -l tp-inventory/collectors-config-map=true --no-headers | awk '{print $1}')
+maps=$(oc get configmaps -l tp-inventory/collectors-config-map --no-headers | awk '{print $1}')
 
 for map in ${maps[@]}
 do
