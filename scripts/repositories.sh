@@ -26,13 +26,14 @@ repositories=("inventory_refresh"
               "topological_inventory-sync"
              )
 
-# When script "start.sh" is ran without parameters, these services are started.
+# When script "start.sh" is run without parameters, these services are started.
 # Overwrite in your config.sh, if you want different list
-start_by_default=("kafka"
-                  "persister"
-                  "ingress-api"
-                  "topological-api"
-                  "sources-api"
-                  "sources-sync"
-                  "insights-proxy"
-                 )
+: ${start_by_default:="kafka"
+                      "persister"
+                      "ingress-api"
+                      "topological-api"
+                      "sources-api"
+                      "sources-sync"
+                      "insights-proxy"
+                      }
+
