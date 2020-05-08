@@ -42,6 +42,12 @@ then
   exit 1
 fi
 
+# LOG_DIR - When set, contains the name of the directory under which per-service log files will be saved.
+#	The directory will be created if it does not exist.
+#	When not set or zero length, logging information will not be captured.
+: ${LOG_DIR:=""}
+export LOG_DIR
+
 # Variable for HTTP request header x-rh-identity.
 # Requests authenticated against Tenant.external_tenant
 export X_RH_IDENTITY=$(echo "{\"identity\":{\"account_number\":\"${GITHUB_NAME}\"}}" | base64)

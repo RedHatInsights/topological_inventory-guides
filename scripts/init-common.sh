@@ -33,7 +33,12 @@ function start_svc_in_tmux {
     if [[ ${svc} == "kafka" ]]; then
         start_kafka
     else
-        tmux new-window -t TpInv -n ${svc} "services/${svc}.sh"
+        if [[ -n "$LOG_DIR" ]]; then
+            [ -d "$LOG_DIR" ] || mkdir -p "$LOG_DIR"
+            tmux new-window -t TpInv -n ${svc} "services/${svc}.sh 2>&1 | tee ${LOG_DIR}/${svc}.log"
+        else
+            tmux new-window -t TpInv -n ${svc} "services/${svc}.sh"
+        fi
     fi
 }
 
