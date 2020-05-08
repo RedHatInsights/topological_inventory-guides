@@ -114,41 +114,48 @@ export SOURCES_API_BASE_PATH="api/sources/v1.0"
 export SOURCES_MONITOR_DIR="$root_dir/sources-monitor"
 
 # Mock Source
-export MOCK_SOURCE_DIR="$root_dir/topological_inventory-mock_source"
-export MOCK_SOURCE_UID="5eebe172-7baa-4280-823f-19e597d091e9"  # random value for dev
-export MOCK_SOURCE_CONFIG="simple"
-export MOCK_SOURCE_DATA="small"
+: ${MOCK_SOURCE_DIR:="$root_dir/topological_inventory-mock_source"}
+: ${MOCK_SOURCE_UID:="5eebe172-7baa-4280-823f-19e597d091e9"}  # random value for dev
+: ${MOCK_SOURCE_CONFIG:="simple"}
+: ${MOCK_SOURCE_DATA:="small"}
+export MOCK_SOURCE_DIR MOCK_SOURCE_UID MOCK_SOURCE_CONFIG MOCK_SOURCE_DATA
 
 # Openshift
-export OPENSHIFT_DIR="$root_dir/topological_inventory-openshift"
-export OPENSHIFT_SOURCE_UID="31b5338b-685d-4056-ba39-d00b4d7f19cc"  # random value for dev
-export OPENSHIFT_SCHEME="https"
-export OPENSHIFT_HOST="openshift.example.com"
-export OPENSHIFT_PORT="80"
-export OPENSHIFT_USER="XXX"
-export OPENSHIFT_PASSWORD="XXX"
-export OPENSHIFT_API_PATH="/api" # kubernetes API
+: ${OPENSHIFT_DIR:="$root_dir/topological_inventory-openshift"}
+: ${OPENSHIFT_SOURCE_UID:="31b5338b-685d-4056-ba39-d00b4d7f19cc"}  # random value for dev
+: ${OPENSHIFT_SCHEME:="https"}
+: ${OPENSHIFT_HOST:="openshift.example.com"}
+: ${OPENSHIFT_PORT:="80"}
+: ${OPENSHIFT_USER:="XXX"}
+: ${OPENSHIFT_PASSWORD:="XXX"}
+: ${OPENSHIFT_API_PATH:="/api"} # kubernetes API
+export OPENSHIFT_DIR OPENSHIFT_SOURCE_UID OPENSHIFT_SCHEME OPENSHIFT_HOST OPENSHIFT_PORT
+export OPENSHIFT_USER OPENSHIFT_PASSWORD OPENSHIFT_API_PATH
 
 # Amazon
-export AMAZON_DIR="$root_dir/topological_inventory-amazon"
-export AMAZON_SOURCE_UID="592ba27a-2b89-11e9-b210-d663bd873d93" # random value for dev
-export AMAZON_ACCESS_KEY_ID="XXX"
-export AMAZON_SECRET_ACCESS_KEY="XXX"
+: ${AMAZON_DIR:="$root_dir/topological_inventory-amazon"}
+: ${AMAZON_SOURCE_UID:="592ba27a-2b89-11e9-b210-d663bd873d93"} # random value for dev
+: ${AMAZON_ACCESS_KEY_ID:="XXX"}
+: ${AMAZON_SECRET_ACCESS_KEY:="XXX"}
+export AMAZON_DIR AMAZON_SOURCE_UID AMAZON_ACCESS_KEY_ID AMAZON_SECRET_ACCESS_KEY
 
 # Ansible Tower
-export ANSIBLE_TOWER_DIR="$root_dir/topological_inventory-ansible_tower"
-export ANSIBLE_TOWER_SOURCE_UID="23d05717-ad56-4eec-8c34-cc0322e2c411"  # random value for dev
-export ANSIBLE_TOWER_SCHEME="https"
-export ANSIBLE_TOWER_HOST="tower.example.com"
-export ANSIBLE_TOWER_USER="XXX"
-export ANSIBLE_TOWER_PASSWORD="XXX"
+: ${ANSIBLE_TOWER_DIR:="$root_dir/topological_inventory-ansible_tower"}
+: ${ANSIBLE_TOWER_SOURCE_UID:="23d05717-ad56-4eec-8c34-cc0322e2c411"}  # random value for dev
+: ${ANSIBLE_TOWER_SCHEME:="https"}
+: ${ANSIBLE_TOWER_HOST:="tower.example.com"}
+: ${ANSIBLE_TOWER_USER:="XXX"}
+: ${ANSIBLE_TOWER_PASSWORD:="XXX"}
+export ANSIBLE_TOWER_DIR ANSIBLE_TOWER_SOURCE_UID ANSIBLE_TOWER_SCHEME ANSIBLE_TOWER_HOST
+export ANSIBLE_TOWER_USER ANSIBLE_TOWER_PASSWORD
 
 # Azure
-export AZURE_DIR="$root_dir/topological_inventory-azure"
-export AZURE_SOURCE_UID="4af9131d-d200-4516-950e-83f9926462a9"
-export AZURE_CLIENT_ID="XXX"
-export AZURE_CLIENT_SECRET="XXX"
-export AZURE_SUBSCRIPTION_ID="XXX"
+: ${AZURE_DIR:="$root_dir/topological_inventory-azure"}
+: ${AZURE_SOURCE_UID:="4af9131d-d200-4516-950e-83f9926462a9"}
+: ${AZURE_CLIENT_ID:="XXX"}
+: ${AZURE_CLIENT_SECRET:="XXX"}
+: ${AZURE_SUBSCRIPTION_ID:="XXX"}
+export AZURE_DIR AZURE_SOURCE_UID AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_SUBSCRIPTION_ID
 
 # UI
 export INSIGHTS_PROXY_DIR="$root_dir/insights-proxy"
@@ -160,7 +167,8 @@ export SOURCES_UI_DIR="$root_dir/sources-ui"
 export ORCHESTRATOR_DIR="$root_dir/topological_inventory-orchestrator"
 
 # Satellite
-export SATELLITE_DIR="$root_dir/topological_inventory-satellite"
-export SATELLITE_SOURCE_UID="f3224fd3-bdc2-4c48-b8a7-3a35111d5808"
-export SATELLITE_SCHEME="https"
-export SATELLITE_HOST="satellite.example.com"
+: ${SATELLITE_DIR:="$root_dir/topological_inventory-satellite"}
+: ${SATELLITE_SOURCE_UID:="f3224fd3-bdc2-4c48-b8a7-3a35111d5808"}
+: ${SATELLITE_SCHEME:="https"}
+: ${SATELLITE_HOST:="satellite.example.com"}
+export SATELLITE_DIR SATELLITE_SOURCE_UID SATELLITE_SCHEME SATELLITE_HOST
