@@ -48,27 +48,62 @@ https://www.npmjs.com/get-npm
 Config file contains all information for installation and running services.  
 Default values are filled in [config.default.sh](scripts/config.default.sh).
 - Create *config.sh* with this content:
-  - ```
+  ```
+  #!/bin/bash
+  # Define required values.
+  root_dir="<your topological-inventory root dir>"
+  MY_GITHUB_NAME="<your github name>"
+  MY_GITHUB_TOKEN="<your github token>"
+  ACCOUNT_NUMBER="<your account number>"
+
+  # Define optional values, as needed.
+  RVM_RUBY_VERSION_TP_INV="<your ruby version>"
+
+  source "config.default.sh"
+  ```
+- Redefine values in `config.sh`:  
+  - Required:  
+    - Your github name: `MY_GITHUB_NAME`
+    - Your github token: `MY_GITHUB_TOKEN`
+    - Your account number - the account number you're using to log to CI server: `ACCOUNT_NUMBER`
+    - Your root directory for repositories: `root_dir`
+  - Optional
+    - URL to kafka archive (see chapter above): `KAFKA_INSTALL_URL`
+    - RVM ruby version you want to use (if using rvm, in `rvm use` format): `RVM_RUBY_VERSION_TP_INV`
+    - RVM gemset name you want to use (if using rvm, in `rvm gemset use` format): `RVM_GEMSET_NAME_TP_INV`
+  - Logging
+    Logging information can be captured by setting the `LOG_DIR` variable. When set, this variable contains the name of the directory under which per-service log files will be saved. The directory will be created if it does not exist. When not set or zero length, logging information will not be captured. For example:
+    ```
     #!/bin/bash
     # Define required values.
     root_dir="<your topological-inventory root dir>"
     MY_GITHUB_NAME="<your github name>"
     MY_GITHUB_TOKEN="<your github token>"
     ACCOUNT_NUMBER="<your account number>"
-    # Define optional values, as needed.
-    RVM_RUBY_VERSION_TP_INV="<your ruby version>"
+
+    # Enable log capture
+    LOG_DIR="svc_logs" 
+
     source "config.default.sh"
     ```
-- Redefine values in `config.sh`:  
-  - Required:  
-    - Your github name (_MY_GITHUB_NAME_)
-    - Your github token (_MY_GITHUB_TOKEN_)
-    - Your account number (_ACCOUNT_NUMBER_) (to account number you're using to log to CI server)
-    - Your root directory for repositories (_root_dir_)
-  - Optional
-    - URL to kafka archive (see chapter above) (_KAFKA_INSTALL_URL_)
-    - RVM ruby version you want to use (if using rvm, in `rvm use` format) (_RVM_RUBY_VERSION_TP_INV_)
-    - RVM gemset name you want to use (if using rvm, in `rvm gemset use` format) (_RVM_GEMSET_NAME_TP_INV_)
+  - Source information
+    The identification and authentication information for various sources can also be defined in `config.sh`. For example:
+    ```
+    #!/bin/bash
+    # Define required values.
+    root_dir="<your topological-inventory root dir>"
+    MY_GITHUB_NAME="<your github name>"
+    MY_GITHUB_TOKEN="<your github token>"
+    ACCOUNT_NUMBER="<your account number>"
+
+    # Define values for an Ansible provider.
+    ANSIBLE_TOWER_SCHEME="https"
+    ANSIBLE_TOWER_HOST="12.245.678.910"
+    ANSIBLE_TOWER_USER="some_account"
+    ANSIBLE_TOWER_PASSWORD="<account password>" 
+
+    source "config.default.sh"
+    ```
 
 ## Installation
 
