@@ -1,12 +1,20 @@
 #!/bin/bash --login
-#
+
+cwd=$(pwd)
+
+if [[ $cwd != *"topological_inventory-guides/scripts" ]]; then
+  echo "Please switch to 'topological_inventory-guides/scripts' directory"
+  exit
+fi
+
 source config.sh
 source init-common.sh
 
 set -e
 
-cwd=$(pwd)
-
+if [[ $cwd == *"topological_inventory-guides/scripts" ]]; then
+  echo "Please switch to 'topological_inventory-guides/scripts' directory"
+fi
 #
 # 1) create root directory
 #
@@ -28,7 +36,7 @@ fi
 
 cd ${cwd}
 #
-# 3) make all scripts executable
+# 3) make all scripts executable, create /scripts symlink
 #
 echo "-------------------------------------------------------"
 echo "Making these scripts executable, creating symlink..."
