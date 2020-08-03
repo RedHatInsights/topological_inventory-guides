@@ -184,9 +184,15 @@ Following scripts helps with commonly used mass operations.
 
 ## Calling APIs
 
+### From Shell Scripts
 [API directory](scripts/api) contains scripts for querying Sources API and Tp-Inv API.  
 They can be used directly from command line like:
 - `cd scripts`
 - `api/sources/get sources`
 - response can be parsed with *jq* utility: `api/sources/get sources | jq '.'`
 Or called from script with the same parameters, see [examples.sh](scripts/api/examples.sh)
+
+### Through the Ruby API: `sources-api-client`
+While there are good examples of this in the [sources-api-client-ruby](https://github.com/RedHatInsights/sources-api-client-ruby) repository, certain considerations must be taken when accessing the API service running locally in the developer's environment - specifically concerning authentication. An example of this is provided in [dev\_example.rb](scripts/api/sources/dev\_example.rb). Additionally, the [gen\_identity.sh](scripts/api/gen\_identity.sh) shell script is provided to facilitate the generation of the required `x_rh_identity` string.
+
+More useful information can also be found in the [insights-api-common-rails](https://github.com/RedHatInsights/insights-api-common-rails) repository.
