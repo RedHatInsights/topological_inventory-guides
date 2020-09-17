@@ -166,6 +166,9 @@ export SOURCES_UI_DIR="$root_dir/sources-ui"
 # Orchestrator
 export ORCHESTRATOR_DIR="$root_dir/topological_inventory-orchestrator"
 
+# Scheduler
+export SCHEDULER_DIR="$root_dir/topological_inventory-scheduler"
+
 # Satellite
 : ${SATELLITE_DIR:="$root_dir/topological_inventory-satellite"}
 : ${SATELLITE_SOURCE_UID:="f3224fd3-bdc2-4c48-b8a7-3a35111d5808"}
