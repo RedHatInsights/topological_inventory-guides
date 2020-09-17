@@ -56,7 +56,7 @@ echo "Setting Azure Source to: $AZURE_SOURCE_UID"
 rails r "tenant = Tenant.where(:external_tenant => '$ACCOUNT_NUMBER').first
 src = Source.find_or_create_by(:name => 'Azure Source', :tenant => tenant, :uid =>'$AZURE_SOURCE_UID', :source_type => SourceType.find_by(:name => 'azure'), :availability_status => 'available')
 endpoint = Endpoint.find_or_create_by(:source_id => src.id, :default => true, :path => '/', :tenant => tenant)
-auth = Authentication.find_or_create_by(:resource_type => 'Endpoint', :resource_id => endpoint.id, :authtype => 'tenant_id_client_id_client_secret', :username => '$AZURE_CLIENT_ID', :password => '$AZURE_CLIENT_SECRET', :extra => {\"azure\": {\"tenant_id\": \"$AZURE_SUBSCRIPTION_ID\"}}, :tenant => tenant)
+auth = Authentication.find_or_create_by(:resource_type => 'Endpoint', :resource_id => endpoint.id, :authtype => 'tenant_id_client_id_client_secret', :username => '$AZURE_CLIENT_ID', :password => '$AZURE_CLIENT_SECRET', :extra => {\"azure\": {\"tenant_id\": \"$AZURE_TENANT_ID\"}}, :tenant => tenant)
 app_type = ApplicationType.where(:name => '/insights/platform/topological-inventory').first
 app = Application.find_or_create_by(:source => src, :tenant => tenant, :application_type => app_type, :availability_status => 'available')"
 
