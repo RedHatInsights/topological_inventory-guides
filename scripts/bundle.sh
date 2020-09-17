@@ -14,6 +14,12 @@ operation=$1
 if [[ "$operation" == "install" || "$operation" == "update" ]]; then
 	for name in ${repositories[@]} 
 	do
+		if [[ ! -d $name ]]; then
+			echo
+			echo "${name}: Directory does not exist, skipping."
+			continue
+		fi
+        
 		echo "$name -------------------------------------------------------"
 	
 		cd $name

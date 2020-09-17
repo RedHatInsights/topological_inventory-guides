@@ -11,6 +11,11 @@ empty_line=1
 
 for name in ${repositories[@]}
 do
+	if [[ ! -d $name ]]; then
+		echo "${name}: Directory does not exist, skipping."
+		continue
+	fi
+
 	cd $name
 	current_branch=$(git rev-parse --abbrev-ref HEAD)
 
