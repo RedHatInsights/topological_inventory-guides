@@ -10,6 +10,11 @@ cd $root_dir
 
 for name in ${repositories[@]} 
 do
+	if [[ ! -d $name ]]; then
+		echo
+		echo "${name}: Directory does not exist, skipping."
+		continue
+	fi
 	cd ${name}
 		current_branches=$(git branch)
 		echo ""
