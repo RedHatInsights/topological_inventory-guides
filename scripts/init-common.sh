@@ -1,16 +1,20 @@
 #!/usr/bin/env bash
 
 if [[ -f "$HOME/.rvm/scripts/rvm" ]]; then
-  source "$HOME/.rvm/scripts/rvm"
-  rvm use ${RVM_RUBY_VERSION_TP_INV}
-  rvm gemset use ${RVM_GEMSET_NAME_TP_INV}
+    source "$HOME/.rvm/scripts/rvm"
+    rvm use ${RVM_RUBY_VERSION_TP_INV}
+    rvm gemset use ${RVM_GEMSET_NAME_TP_INV}
 fi
 
 function start_kafka {
-			tmux new-window -t TpInv -n kafka "services/kafka.sh start"
-			echo "Waiting for Kafka initialization 20 sec..."
-			sleep 20
-			echo "Done"
+    if [[ -n "$LOG_DIR" ]]; then
+        tmux new-window -t TpInv -n kafka "services/kafka.sh start 2>&1 | tee ${LOG_DIR}/kafka.log"
+    else
+        tmux new-window -t TpInv -n kafka "services/kafka.sh start"
+    fi
+    echo "Waiting for Kafka initialization 20 sec..."
+    sleep 20
+    echo "Done"
 }
 
 function stop_kafka {
@@ -34,7 +38,6 @@ function start_svc_in_tmux {
         start_kafka
     else
         if [[ -n "$LOG_DIR" ]]; then
-            [ -d "$LOG_DIR" ] || mkdir -p "$LOG_DIR"
             tmux new-window -t TpInv -n ${svc} "services/${svc}.sh 2>&1 | tee ${LOG_DIR}/${svc}.log"
         else
             tmux new-window -t TpInv -n ${svc} "services/${svc}.sh"

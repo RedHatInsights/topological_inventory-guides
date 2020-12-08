@@ -8,6 +8,8 @@ source ./init-common.sh
 
 requested_svc=$1
 
+[ -n "$LOG_DIR" ] && [ [ -d "$LOG_DIR" ] || mkdir -p "$LOG_DIR" ]
+
 if [[ -z ${requested_svc} ]]; then
 
     if [[ $MAC_OS == false ]]; then
