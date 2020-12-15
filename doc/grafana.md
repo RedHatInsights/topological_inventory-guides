@@ -11,8 +11,9 @@ Development RH documentation can be found there:
 Links to Grafana instances can be found in the links for stage/prod cluster (see [doc](https://gitlab.cee.redhat.com/service/app-interface/-/tree/master/docs/cloud.redhat.com/dev-onboarding#accessing-stage-environment)).  
 In the Grafana, these dashboards are available under:
 
-- Insights > Topological Inventory General
-- Insights > Topological Inventory Collectors&Opts
+- Insights > Topological Inventory - Core
+- Insights > Topological Inventory - APIs
+- Insights > Topological Inventory - Collectors & Operations
 - Insights > Sources 
 
 ## Dashboard definitions
@@ -25,12 +26,21 @@ These ConfigMaps are generated from exported JSON.
 Dashboard can exported in Grafana by:
 - Share dashboard > Export > View JSON
 
-Then it needs to be converted to ConfigMap using:
+### Convert JSON to ConfigMap
+
+App-Interface needs configmap for deployment of dashboard.  
+The conversion script is located in [scripts/openshift/grafana-dashboard.sh](../scripts/openshift/grafana-dashboard.sh) script
+
+Save the json to one of the dashboard folders above and run: 
+
 ```
-oc create configmap grafana-dashboard-insights-topological-inventory --from-file=./grafana-dashboard-insights-topological-inventory.json -o yaml --dry-run > grafana-dashboard-insights-topological-inventory.configmap.yaml
+oc login <some openshift>
+
+cd <topological-api|sources-api>/grafana-dashboards
+
+../../scripts/openshift/grafana-dashboard.sh -f <your-file.json>
 ```
 
-Finally add a metadata described in the GitLab documentation ^^^ to it.
 
 ## Publishing dashboard
 
@@ -41,3 +51,5 @@ a new dashboard location or update the ref to the GitHub commit of your PR with 
 
 Example: [Initial PR](https://github.com/RedHatInsights/topological_inventory-api/pull/322) has a commit with SHA 
 - 6c0cf9b030733ac4dac669a83636d7353f3fc800
+
+*Note: Stage grafana points to the master branch of topo/sources api repos so changes are deployed automatically.*
