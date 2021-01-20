@@ -175,3 +175,10 @@ export SCHEDULER_DIR="$root_dir/topological_inventory-scheduler"
 : ${SATELLITE_SCHEME:="https"}
 : ${SATELLITE_HOST:="satellite.example.com"}
 export SATELLITE_DIR SATELLITE_SOURCE_UID SATELLITE_SCHEME SATELLITE_HOST
+
+# Google Cloud Engine
+: ${GOOGLE_DIR:="$root_dir/topological_inventory-google"}
+: ${GOOGLE_SOURCE_UID:="1a8ec418-468a-4ea9-8f07-16ffca9b765d"}
+: ${GOOGLE_PROJECT_ID:="XXX"}
+: ${GOOGLE_AUTH_JSON:="{}"}
+export GOOGLE_DIR GOOGLE_SOURCE_UID GOOGLE_PROJECT_ID GOOGLE_AUTH_JSON

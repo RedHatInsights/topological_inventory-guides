@@ -60,6 +60,14 @@ auth = Authentication.find_or_create_by(:resource_type => 'Endpoint', :resource_
 app_type = ApplicationType.where(:name => '/insights/platform/topological-inventory').first
 app = Application.find_or_create_by(:source => src, :tenant => tenant, :application_type => app_type, :availability_status => 'available')"
 
+echo "Setting Google Source to: $GOOGLE_SOURCE_UID"
+rails r "tenant = Tenant.where(:external_tenant => '$ACCOUNT_NUMBER').first
+src = Source.find_or_create_by(:name => 'Azure Source', :tenant => tenant, :uid =>'$GOOGLE_SOURCE_UID', :source_type => SourceType.find_by(:name => 'google'), :availability_status => 'available')
+endpoint = Endpoint.find_or_create_by(:source_id => src.id, :default => true, :path => '/', :tenant => tenant)
+auth = Authentication.find_or_create_by(:resource_type => 'Endpoint', :resource_id => endpoint.id, :authtype => 'project_id_service_account_json', :username => '$GOOGLE_PROJECT_ID', :password => '$GOOGLE_AUTH_JSON', :tenant => tenant)
+app_type = ApplicationType.where(:name => '/insights/platform/topological-inventory').first
+app = Application.find_or_create_by(:source => src, :tenant => tenant, :application_type => app_type, :availability_status => 'available')"
+
 echo "Setting Satellite Source to: $SATELLITE_SOURCE_UID"
 rails r "tenant = Tenant.where(:external_tenant => '$ACCOUNT_NUMBER').first
 src = Source.find_or_create_by(:name => 'Satellite Source', :tenant => tenant, :uid =>'$SATELLITE_SOURCE_UID', :source_type => SourceType.find_by(:name => 'satellite'), :availability_status => 'available')
