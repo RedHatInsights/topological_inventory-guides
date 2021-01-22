@@ -100,7 +100,7 @@ export TOPOLOGICAL_INVENTORY_API_SERVICE_HOST="http://localhost" # used by opens
 export TOPOLOGICAL_INVENTORY_API_SERVICE_PORT=3001
 export TOPOLOGICAL_INVENTORY_URL="http://localhost:3001"
 # - Used by api scripts
-export TOPOLOGICAL_INVENTORY_API_BASE_PATH="api/topological-inventory/v2.0"
+export TOPOLOGICAL_INVENTORY_API_BASE_PATH="api/topological-inventory/v3.0"
 
 # Sources API service
 export SOURCES_API_DIR="$root_dir/sources-api"
@@ -108,7 +108,7 @@ export SOURCES_SCHEME="http"
 export SOURCES_HOST="localhost"
 export SOURCES_PORT="3002"
 # - Used by api scripts
-export SOURCES_API_BASE_PATH="api/sources/v1.0"
+export SOURCES_API_BASE_PATH="api/sources/v3.0"
 
 # Sources monitor (availability check)
 export SOURCES_MONITOR_DIR="$root_dir/sources-monitor"
