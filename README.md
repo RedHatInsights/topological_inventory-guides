@@ -41,8 +41,13 @@ Mac users: https://docs.docker.com/docker-for-mac/install/
 
 **NPM**
 
-NPM is needed for running UI service (and insights proxy)
+NPM is needed for running UI service (and insights proxy)  
 https://www.npmjs.com/get-npm
+
+**Go**
+
+If you want to run sources-superkey-worker, Go is needed.  
+https://golang.org/dl/
 
 **Config file**
 

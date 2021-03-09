@@ -113,6 +113,9 @@ export SOURCES_API_BASE_PATH="api/sources/v3.0"
 # Sources monitor (availability check)
 export SOURCES_MONITOR_DIR="$root_dir/sources-monitor"
 
+# Sources SuperKey Worker service
+export SOURCES_SUPERKEY_WORKER_DIR="$root_dir/sources-superkey-worker"
+
 # Mock Source
 : ${MOCK_SOURCE_DIR:="$root_dir/topological_inventory-mock_source"}
 : ${MOCK_SOURCE_UID:="5eebe172-7baa-4280-823f-19e597d091e9"}  # random value for dev
