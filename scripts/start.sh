@@ -50,7 +50,12 @@ if [[ -z ${requested_svc} ]]; then
 
 	tmux attach-session -t TpInv
 else
-                echo "(Re)starting $requested_svc"
-                stop_svc_in_tmux ${requested_svc}
-                start_svc_in_tmux ${requested_svc}
+    tmux has-session -t TpInv
+    if [ $? != 0 ]; then
+        tmux new-session -d -s TpInv
+    fi
+    
+    echo "(Re)starting $requested_svc"
+    stop_svc_in_tmux ${requested_svc}
+    start_svc_in_tmux ${requested_svc}
 fi
