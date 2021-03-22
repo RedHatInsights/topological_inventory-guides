@@ -1,15 +1,14 @@
 ---
 configuration:
-  app_interface_env: insights-production # insights-stage
   local_root: /home/mslemr/Projects/RedHatInsights
   quay_root: quay.io/mslemr
 repos_to_deploy: # Comment repos you don't want deploy
 - name: sources-api
-  source: local # or app-interface
+  source: local # [local|insights-production|insights-stage]
 - name: sources-monitor
-  source: local # or app-interface
+  source: local # [local|insights-production|insights-stage]
 - name: sources-superkey-worker
-  source: local # or app-interface
+  source: local # [local|insights-production|insights-stage]
 common_parameters:
   MIN_REPLICAS: 1
 apps: # Applied for `repos_to_deploy/source: local`

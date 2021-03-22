@@ -48,10 +48,12 @@ module Clowder
         @repos.each_pair do |name, source|
           app_name = repo_to_app_name(name)
 
-          cmd = if source == 'app-interface'
-                  "#{bonfire_command} config get -a #{app_name} --ref-env #{@configuration['app_interface_env']}"
-                else
+          cmd = if %w[insights-production insights-stage].include?(source)
+                  "#{bonfire_command} config get -a #{app_name} --ref-env #{source}"
+                elsif source == 'local'
                   "#{bonfire_command} local get -a #{app_name} -c #{@output_config_file}"
+                else
+                  raise "Repository #{name} requested unknown source of parameters: #{source}"
                 end
 
           cmd += " | oc apply -f -"

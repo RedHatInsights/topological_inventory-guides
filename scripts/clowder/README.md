@@ -27,15 +27,14 @@ Login to the minikube/openshift by `oc login`
 
 Open your `sources.local.yaml`, there are several sections:
 - configuration: 
-  - update your root paths
-  - app_interface_env: \[insights-production|insights-stage\]
-    - applied for repos with `sources: app-interface`
-    - By default, bonfire will use a “reference environment” of insights-production. This means that it will look at each component’s production deployment target to determine the template_ref and IMAGE_TAG to use. If you want to use stage as the reference environment, pass the option `insights-stage`
+  - local_root: directory where are cloned your topo/sources repos. Should be equal to `root_path` in your `config.sh` (in the `scripts dir`)
+  - quay_root: namespace where you quay images live, usually quay.io/<username>
 - repos_to_deploy:
   - comment items you don't want to deploy/cleanup
   - source: 
     - local: apps are deployed using your quay image/image tag, clowdapp.yaml in your local repo and parameters in the config
-    - app-interface: apps are deployed using configuration in app-interface (by default with parameters from production env)
+    - insights-production: apps are deployed using parameters in app-interface's production env
+    - insights-stage: apps are deployed using parameters in app-interface's stage env
 - common_parameters:
   - these parameters are used for all repos with `source: local` deployment
 - apps:
@@ -57,11 +56,12 @@ Usage:
               [--cleanup]
               [--dry-run]
               
-options:
---config: path to your config
---target: switch between ephemeral cluster/local minikube(crc)
---cleanup (optional): deletes apps specified in your sources.local.yaml in "repos_to_deploy" section
---dry-run (optional): reserves env, parses config, but doesn't deploy
+Options:
+-c, --config=<s>: path to your config
+-l, --target=<s>: switch between ephemeral cluster/local minikube(crc)
+-d, --cleanup (optional): deletes apps specified in your sources.local.yaml in "repos_to_deploy" section
+-t, --dry-run (optional): reserves env, parses config, but doesn't deploy
+-h, --help: Shows this help 
 ```
 
 The deployer parses your `sources.local.yaml` and generates `templates/bonfire-sources.local.yaml` which is used for the deployment
