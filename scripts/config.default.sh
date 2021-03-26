@@ -91,13 +91,13 @@ export TOPOLOGICAL_INVENTORY_SYNC_DIR="$root_dir/topological_inventory-sync"
 # Ingress API service (Persister <-> Collectors)
 export INGRESS_API_DIR="$root_dir/topological_inventory-ingress_api"
 export INGRESS_API="http://localhost:9292"
-export TOPOLOGICAL_INVENTORY_INGRESS_API_SERVICE_HOST="http://localhost"
-export TOPOLOGICAL_INVENTORY_INGRESS_API_SERVICE_PORT="9292"
+export TOPOLOGICAL_INVENTORY_INGRESS_API_HOST="http://localhost"
+export TOPOLOGICAL_INVENTORY_INGRESS_API_PORT="9292"
 
 # Topological API service
 export TOPOLOGICAL_API_DIR="$root_dir/topological_inventory-api"
-export TOPOLOGICAL_INVENTORY_API_SERVICE_HOST="http://localhost" # used by openshift operations
-export TOPOLOGICAL_INVENTORY_API_SERVICE_PORT=3001
+export TOPOLOGICAL_INVENTORY_HOST="http://localhost" # used by openshift operations
+export TOPOLOGICAL_INVENTORY_PORT=3001
 export TOPOLOGICAL_INVENTORY_URL="http://localhost:3001"
 # - Used by api scripts
 export TOPOLOGICAL_INVENTORY_API_BASE_PATH="api/topological-inventory/v3.0"
