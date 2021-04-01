@@ -187,7 +187,28 @@ Following scripts helps with commonly used mass operations.
 
 - [bundle.sh](scripts/bundle.sh): Bundles all repositories which contains Gemfile
 - [update.sh](scripts/update.sh): Bundles repositories with Gemfile, runs npm build on UI, insights-proxy repositories and runs migrations on `topological_inventory-core` and `sources-api`
-
+- [haberdasher.sh](scripts/haberdasher.sh): Helps to run applications with using [haberdasher](https://github.com/RedHatInsights/haberdasher):
+  ```
+  Example 1 - with sending logs to kafka:
+  ./haberdasher.sh ./services/openshift-operations.sh kafka
+  
+  Example 2 - without prepeding haberdasher command:
+  ./haberdasher.sh ./services/openshift-operations.sh stderr without_hb
+  ```
+  Docs:
+  ```
+  ./haberdasher.sh <command_to_run> <desired_output> [<option_for_prepending_hb_command>]
+  ```
+  
+  - `<command_to_run>` - (required) is command which will be run with haberdasher application
+  - `<desired_output>` - (required) haberdasher can send message(logs) to kafka or stderr. 
+                         This parameter controls it by values `kafka` or `stderr`:
+  - `[<option_for_prepending_hb_command>]` - (optional) `without_hb`: run `<command_to_run>` without 
+                                             prepending haberdasher application. It is useful because
+                                             script `./haberdasher.sh` sets some variables which are 
+                                             needed for development but running haberdasher application 
+                                             is not necessary.
+  
 ## Calling APIs
 
 ### From Shell Scripts
