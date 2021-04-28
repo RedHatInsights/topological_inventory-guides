@@ -173,7 +173,7 @@ export ORCHESTRATOR_DIR="$root_dir/topological_inventory-orchestrator"
 export SCHEDULER_DIR="$root_dir/topological_inventory-scheduler"
 
 # Satellite
-: ${SATELLITE_DIR:="$root_dir/topological_inventory-satellite"}
+: ${SATELLITE_DIR:="$root_dir/sources-satellite"}
 : ${SATELLITE_SOURCE_UID:="f3224fd3-bdc2-4c48-b8a7-3a35111d5808"}
 : ${SATELLITE_SCHEME:="https"}
 : ${SATELLITE_HOST:="satellite.example.com"}
