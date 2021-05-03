@@ -7,6 +7,8 @@ repos_to_deploy: # Comment repos you don't want deploy
   source: local # [local|insights-production|insights-stage]
 - name: sources-monitor
   source: local # [local|insights-production|insights-stage]
+#- name: sources-satellite
+#  source: local # [local|insights-production|insights-stage]
 - name: sources-superkey-worker
   source: local # [local|insights-production|insights-stage]
 common_parameters:
@@ -17,6 +19,9 @@ apps: # Applied for `repos_to_deploy/source: local`
     IMAGE_TAG: xxxxxxx # your quay image tag
     SOURCES_ENV: stage
 - name: sources-monitor
+  parameters:
+    IMAGE_TAG: xxxxxxx # your quay image tag
+- name: sources-satellite
   parameters:
     IMAGE_TAG: xxxxxxx # your quay image tag
 - name: sources-superkey-worker
