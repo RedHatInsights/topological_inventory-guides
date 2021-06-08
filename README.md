@@ -61,6 +61,7 @@ Default values are filled in [config.default.sh](scripts/config.default.sh).
   MY_GITHUB_NAME="<your github name>"
   MY_GITHUB_TOKEN="<your github token>"
   ACCOUNT_NUMBER="<your account number>"
+  SOURCES_PSK="<a key, use something secure like 1234 or $(uuidgen)>"
 
   # Define optional values, as needed.
   RVM_RUBY_VERSION_TP_INV="<your ruby version>"
@@ -77,6 +78,7 @@ Default values are filled in [config.default.sh](scripts/config.default.sh).
     - URL to kafka archive (see chapter above): `KAFKA_INSTALL_URL`
     - RVM ruby version you want to use (if using rvm, in `rvm use` format): `RVM_RUBY_VERSION_TP_INV`
     - RVM gemset name you want to use (if using rvm, in `rvm gemset use` format): `RVM_GEMSET_NAME_TP_INV`
+    - PSK for sources-api if you would like to authenticate with a PSK rather than X-RH-IDENTITY
   - Logging
     Logging information can be captured by setting the `LOG_DIR` variable. When set, this variable contains the name of the directory under which per-service log files will be saved. The directory will be created if it does not exist. When not set or zero length, logging information will not be captured. For example:
     ```
