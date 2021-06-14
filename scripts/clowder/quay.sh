@@ -7,8 +7,22 @@ if [[ -z $QUAY_ROOT ]]; then
   exit
 fi
 
+if [[ "$(uname)" == "Darwin" ]]; then
+  MAC_OS=true
+else
+  MAC_OS=false
+fi
+
 svc=$1
-image_tag=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1`
+
+IMAGE_COMMAND="cat /dev/urandom |"
+
+if $MAC_OS; then
+  IMAGE_COMMAND="${IMAGE_COMMAND} LC_CTYPE=C"
+fi
+
+IMAGE_COMMAND="${IMAGE_COMMAND} tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1"
+image_tag=`eval "$IMAGE_COMMAND"`
 
 #BUILDAH_LAYERS=false podman build -t ${QUAY_ROOT}/${svc} . # don't use cached layers
 podman build -t ${QUAY_ROOT}/${svc} .
