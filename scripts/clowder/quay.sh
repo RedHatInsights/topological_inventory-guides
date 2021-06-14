@@ -13,6 +13,8 @@ else
   MAC_OS=false
 fi
 
+PODMANAGER="docker"
+
 svc=$1
 
 IMAGE_COMMAND="cat /dev/urandom |"
@@ -25,12 +27,12 @@ IMAGE_COMMAND="${IMAGE_COMMAND} tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1"
 image_tag=`eval "$IMAGE_COMMAND"`
 
 #BUILDAH_LAYERS=false podman build -t ${QUAY_ROOT}/${svc} . # don't use cached layers
-podman build -t ${QUAY_ROOT}/${svc} .
-podman run -d ${QUAY_ROOT}/${svc}
-container_id=`podman ps -l | grep "${QUAY_ROOT}/${svc}" | awk '{print $1}'`
+$PODMANAGER build -t ${QUAY_ROOT}/${svc} .
 
-podman commit $container_id ${QUAY_ROOT}/${svc}
-podman tag ${QUAY_ROOT}/${svc} ${QUAY_ROOT}/${svc}:${image_tag} && podman push $_
+container_id=`$PODMANAGER run -d ${QUAY_ROOT}/${svc}`
+
+$PODMANAGER commit $container_id ${QUAY_ROOT}/${svc}
+$PODMANAGER tag ${QUAY_ROOT}/${svc} ${QUAY_ROOT}/${svc}:${image_tag} && $PODMANAGER push $_
 
 echo "Finished! --------------------------------------"
 echo "Quay Image: ${QUAY_ROOT}/${svc}"
