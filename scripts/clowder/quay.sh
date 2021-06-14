@@ -13,7 +13,18 @@ else
   MAC_OS=false
 fi
 
-PODMANAGER="docker"
+PODMANAGER="podman"
+
+if [[ -n $2 ]]; then
+  PODMANAGER=$2
+
+  if [[ $2 != "docker" ]] && [[ $2 != "podman" ]]; then
+    echo "Second parameter have to be podman or docker."
+    exit 2
+  fi
+fi
+
+echo "Used pod manager: $PODMANAGER"
 
 svc=$1
 
