@@ -78,5 +78,7 @@ If you want to use images from your local source code, follow these steps:
     - i.e `cd ~/Projects/RedHatInsights/sources-api; ../scripts/clowder/quay.sh sources-api`
     - it returns the IMAGE_TAG value  
     - second parameter is pod manager, acceptable value is `podman` or `docker` (Default is `docker`).
-      - i.e. `cd ~/Projects/RedHatInsights/sources-api; ../scripts/clowder/quay.sh sources-api docker` 
-  
+      - i.e. `cd ~/Projects/RedHatInsights/sources-api; ../scripts/clowder/quay.sh sources-api docker`
+    - third parameter determines whether image is build from cache: value is `no-cache` - without cache (default is with cache)  
+     - i.e. `cd ~/Projects/RedHatInsights/sources-api; ../scripts/clowder/quay.sh sources-api docker no-cache`
+ 

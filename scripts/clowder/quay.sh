@@ -26,6 +26,12 @@ fi
 
 echo "Used pod manager: $PODMANAGER"
 
+CACHE=true
+
+if [[ $3 == "no-cache" ]]; then
+  CACHE=false
+fi
+
 svc=$1
 
 IMAGE_COMMAND="cat /dev/urandom |"
@@ -37,8 +43,15 @@ fi
 IMAGE_COMMAND="${IMAGE_COMMAND} tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1"
 image_tag=`eval "$IMAGE_COMMAND"`
 
-#BUILDAH_LAYERS=false podman build -t ${QUAY_ROOT}/${svc} . # don't use cached layers
-$PODMANAGER build -t ${QUAY_ROOT}/${svc} .
+if $CACHE; then
+  $PODMANAGER build -t ${QUAY_ROOT}/${svc} .
+else
+  if [[ PODMANAGER == "podman" ]]; then
+    BUILDAH_LAYERS=false podman build -t ${QUAY_ROOT}/${svc} . # don't use cached layers
+  else
+    docker build -t ${QUAY_ROOT}/${svc} . --no-cache
+  fi
+fi
 
 container_id=`$PODMANAGER run -d ${QUAY_ROOT}/${svc}`
 
