@@ -82,4 +82,3 @@ If you want to use images from your local source code, follow these steps:
       - NOTE: For Mac OS is recommended `docker`
     - third parameter determines whether image is build from cache: value is `no-cache` - without cache (default is with cache)  
      - i.e. `cd ~/Projects/RedHatInsights/sources-api; ../scripts/clowder/quay.sh sources-api docker no-cache`
- 

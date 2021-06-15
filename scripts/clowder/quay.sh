@@ -25,10 +25,10 @@ fi
 
 echo "Used image builder: $IMAGE_BUILDER"
 
-CACHE=true
-
-if [[ $3 == "no-cache" ]]; then
+if [[ $CACHE == "no-cache" ]]; then
   CACHE=false
+else
+  CACHE=true
 fi
 
 svc=$1
@@ -45,7 +45,7 @@ image_tag=`eval "$IMAGE_COMMAND"`
 if $CACHE; then
   $IMAGE_BUILDER build -t ${QUAY_ROOT}/${svc} .
 else
-  if [[ IMAGE_BUILDER == "podman" ]]; then
+  if [[ $IMAGE_BUILDER == "podman" ]]; then
     BUILDAH_LAYERS=false podman build -t ${QUAY_ROOT}/${svc} . # don't use cached layers
   else
     docker build -t ${QUAY_ROOT}/${svc} . --no-cache
