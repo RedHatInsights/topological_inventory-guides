@@ -58,20 +58,37 @@ function sources_api_get {
     else
         api_path=$2
     fi
-    curl -H "x-rh-identity: ${X_RH_IDENTITY}" \
-         --silent \
-        "${SOURCES_HOST}:${SOURCES_PORT}/${api_path}/$1"
+    if [[ -z $SOURCES_PSK ]]; then
+        curl -H "x-rh-identity: ${X_RH_IDENTITY}" \
+             --silent \
+            "${SOURCES_HOST}:${SOURCES_PORT}/${api_path}/$1"
+    else
+        curl -H "x-rh-sources-account-number: ${ACCOUNT_NUMBER}" \
+             -H "x-rh-sources-psk: ${SOURCES_PSK}" \
+             --silent \
+            "${SOURCES_HOST}:${SOURCES_PORT}/${api_path}/$1"
+    fi
 }
 
 # Usage: api_post <path> <data>
 # Example: api_post "sources" "{\"name\":\"Mock Source 1\",\"source_type_id\":\"4\"}"
 function sources_api_post {
-    curl --request POST \
-         --header "Content-Type: application/json" \
-         --header "x-rh-identity: ${X_RH_IDENTITY}" \
-         --data "$2" \
-         --silent \
-         "${SOURCES_HOST}:${SOURCES_PORT}/${SOURCES_API_BASE_PATH}/$1"
+    if [[ -z $SOURCES_PSK ]]; then
+        curl --request POST \
+             --header "Content-Type: application/json" \
+             --header "x-rh-identity: ${X_RH_IDENTITY}" \
+             --data "$2" \
+             --silent \
+             "${SOURCES_HOST}:${SOURCES_PORT}/${SOURCES_API_BASE_PATH}/$1"
+    else
+        curl --request POST \
+             --header "Content-Type: application/json" \
+             --header "x-rh-sources-account-number: ${ACCOUNT_NUMBER}" \
+             --header "x-rh-sources-psk: ${SOURCES_PSK}" \
+             --data "$2" \
+             --silent \
+             "${SOURCES_HOST}:${SOURCES_PORT}/${SOURCES_API_BASE_PATH}/$1"
+    fi
 }
 
 # Usage: api_post <path> <data>
@@ -79,21 +96,39 @@ function sources_api_post {
 function sources_api_patch {
   echo "1: ($1)"
   echo "2: ($2)"
-   curl --request PATCH \
+  if [[ -z $SOURCES_PSK ]]; then
+       curl --request PATCH \
          --header "Content-Type: application/json" \
          --header "x-rh-identity: ${X_RH_IDENTITY}" \
          --data "$2" \
          --silent \
          "${SOURCES_HOST}:${SOURCES_PORT}/${SOURCES_API_BASE_PATH}/$1"
+  else
+       curl --request PATCH \
+             --header "Content-Type: application/json" \
+             --header "x-rh-sources-account-number: ${ACCOUNT_NUMBER}" \
+             --header "x-rh-sources-psk: ${SOURCES_PSK}" \
+             --data "$2" \
+             --silent \
+             "${SOURCES_HOST}:${SOURCES_PORT}/${SOURCES_API_BASE_PATH}/$1"
+  fi
 }
 
 # Usage: api_delete <path>
 # Example: api_delete "sources/1"
 function sources_api_delete {
-    curl --request DELETE \
-         --header "x-rh-identity: ${X_RH_IDENTITY}" \
-         --silent \
-         "${SOURCES_HOST}:${SOURCES_PORT}/${SOURCES_API_BASE_PATH}/$1"
+    if [[ -z $SOURCES_PSK ]]; then
+        curl --request DELETE \
+             --header "x-rh-identity: ${X_RH_IDENTITY}" \
+             --silent \
+             "${SOURCES_HOST}:${SOURCES_PORT}/${SOURCES_API_BASE_PATH}/$1"
+    else
+        curl --request DELETE \
+             --header "x-rh-sources-account-number: ${ACCOUNT_NUMBER}" \
+             --header "x-rh-sources-psk: ${SOURCES_PSK}" \
+             --silent \
+             "${SOURCES_HOST}:${SOURCES_PORT}/${SOURCES_API_BASE_PATH}/$1"
+    fi
 }
 
 ######################################
