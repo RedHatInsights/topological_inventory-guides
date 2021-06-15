@@ -13,15 +13,14 @@ else
   MAC_OS=false
 fi
 
-IMAGE_BUILDER="podman"
 
-if [[ -n $2 ]]; then
-  IMAGE_BUILDER=$2
+if [[ -z $IMAGE_BUILDER ]]; then
+  IMAGE_BUILDER="podman"
+fi
 
-  if [[ $2 != "docker" ]] && [[ $2 != "podman" ]]; then
-    echo "Second parameter have to be podman or docker."
-    exit 2
-  fi
+if [[ $IMAGE_BUILDER != "docker" ]] && [[ $IMAGE_BUILDER != "podman" ]]; then
+  echo "IMAGE_BUILDER has to be 'podman' or 'docker'."
+  exit 2
 fi
 
 echo "Used image builder: $IMAGE_BUILDER"
