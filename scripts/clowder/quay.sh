@@ -13,10 +13,10 @@ else
   MAC_OS=false
 fi
 
-PODMANAGER="podman"
+IMAGE_BUILDER="podman"
 
 if [[ -n $2 ]]; then
-  PODMANAGER=$2
+  IMAGE_BUILDER=$2
 
   if [[ $2 != "docker" ]] && [[ $2 != "podman" ]]; then
     echo "Second parameter have to be podman or docker."
@@ -24,7 +24,7 @@ if [[ -n $2 ]]; then
   fi
 fi
 
-echo "Used pod manager: $PODMANAGER"
+echo "Used image builder: $IMAGE_BUILDER"
 
 CACHE=true
 
@@ -44,19 +44,19 @@ IMAGE_COMMAND="${IMAGE_COMMAND} tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1"
 image_tag=`eval "$IMAGE_COMMAND"`
 
 if $CACHE; then
-  $PODMANAGER build -t ${QUAY_ROOT}/${svc} .
+  $IMAGE_BUILDER build -t ${QUAY_ROOT}/${svc} .
 else
-  if [[ PODMANAGER == "podman" ]]; then
+  if [[ IMAGE_BUILDER == "podman" ]]; then
     BUILDAH_LAYERS=false podman build -t ${QUAY_ROOT}/${svc} . # don't use cached layers
   else
     docker build -t ${QUAY_ROOT}/${svc} . --no-cache
   fi
 fi
 
-container_id=`$PODMANAGER run -d ${QUAY_ROOT}/${svc}`
+container_id=`$IMAGE_BUILDER run -d ${QUAY_ROOT}/${svc}`
 
-$PODMANAGER commit $container_id ${QUAY_ROOT}/${svc}
-$PODMANAGER tag ${QUAY_ROOT}/${svc} ${QUAY_ROOT}/${svc}:${image_tag} && $PODMANAGER push $_
+$IMAGE_BUILDER commit $container_id ${QUAY_ROOT}/${svc}
+$IMAGE_BUILDER tag ${QUAY_ROOT}/${svc} ${QUAY_ROOT}/${svc}:${image_tag} && $IMAGE_BUILDER push $_
 
 echo "Finished! --------------------------------------"
 echo "Quay Image: ${QUAY_ROOT}/${svc}"
