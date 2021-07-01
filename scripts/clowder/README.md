@@ -74,11 +74,11 @@ If you want to use images from your local source code, follow these steps:
 - remove `.bundle` directory from your local repository
 - run `export QUAY_ROOT="quay.io/<user>"`
     - i.e. `export QUAY_ROOT="quay.io/mslemr"`
-- run `cd <your local repository>; ../scripts/clowder/quay.sh <quay repository`
+- run `cd <your local repository>; ../scripts/clowder/quay.sh <quay repository>`
     - i.e `cd ~/Projects/RedHatInsights/sources-api; ../scripts/clowder/quay.sh sources-api`
-    - it returns the IMAGE_TAG value  
+    - it returns the IMAGE_TAG value
     - set env variable IMAGE_BUILDER determine which command is used to build images, supported values are `podman` or `docker` (Default is `docker`).
-      - i.e. `cd ~/Projects/RedHatInsights/sources-api; env IMAGE_BUILDER=docker ../scripts/clowder/quay.sh sources-api docker`
+      - i.e. `cd ~/Projects/RedHatInsights/sources-api; env IMAGE_BUILDER=docker ../scripts/clowder/quay.sh sources-api`
       - NOTE: For Mac OS is recommended `docker`
-    - third parameter determines whether image is build from cache: value is `no-cache` - without cache (default is with cache)  
-     - i.e. `cd ~/Projects/RedHatInsights/sources-api; ../scripts/clowder/quay.sh sources-api docker no-cache`
+    - set env variable CACHE which determines whether image is build from cache: value is `no-cache` - without cache (default is with cache)
+     - i.e. `cd ~/Projects/RedHatInsights/sources-api; env CACHE=no-cache ../scripts/clowder/quay.sh sources-api`
