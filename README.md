@@ -1,5 +1,3 @@
-These guides describes how to install and run Topological Inventory and Sources locally. 
-It also provides documentation of some Topological Inventory & Sources features in the [README](doc/README.md) 
 
 It also describes how to deploy Topological Inventory and Sources by Clowder and Bonfire [Clowder README](scripts/clowder/README.md)
 
